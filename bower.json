@@ -1,0 +1,22 @@
+{
+  "name": "foolish endeavor",
+  "homepage": "https://github.com/Digitalminion/web-angular-foolishendeavor",
+  "authors": [
+    "Leahy <leahy@apache.org>"
+  ],
+  "description": "learning about javascript",
+  "main": "index.html",
+  "keywords": [
+    "svg",
+    "angular"
+  ],
+  "license": "Copyright Digital Minion 2017",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
