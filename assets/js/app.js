@@ -1,6 +1,6 @@
-angular.module('foolishApp', ['ngRoute'])
+var foolishApp = angular.module('foolishApp', ['ngRoute', 'ngAnimate']);
 
-.config(function($routeProvider){
+foolishApp.config(function($routeProvider){
   $routeProvider.when("/",
     {
       templateUrl: "assets/tpl/home.html",
@@ -8,8 +8,8 @@ angular.module('foolishApp', ['ngRoute'])
       controllerAs: "artboard"
     }
   );
-})
+});
 
-.controller('ArtboardCtrl', function() {
+foolishApp.controller('ArtboardCtrl', function() {
   //nothing here yet
 });
