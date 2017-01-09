@@ -7,6 +7,13 @@ foolishApp.config(function($routeProvider){
       controller: "ArtboardCtrl",
       controllerAs: "artboard"
     }
+
+  $routeProvider.when("/about",
+    {
+      templateUrl: "assets/tpl/about.html",
+      controller: "AboutCtrl",
+      controllerAs: "about"
+    }
   );
 });
 
