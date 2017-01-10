@@ -1,5 +1,17 @@
-body{background: blue;}
+body{
+    background: #EDEEF0;
+}
 
-#post{background: green;}
-.container{background: yellow;}
-.content{background: red;}
+
+.content-left{ 
+    width:75%;
+    float: left;
+    margin: 10px;
+}
+
+
+.content-right{
+    width:75%;
+    float: right;
+    margin: 10px;
+}
