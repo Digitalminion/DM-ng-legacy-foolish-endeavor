@@ -3,7 +3,15 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body ng-app="foolishApp">
-	
+    <div class="header">
+            <nav>
+                
+                <a href="index.html">Home</a>
+                <a href="/about.html/">About</a>
+            </nav>
+        
+        
+    </div>	
 	<div class="content container">
     Welcome to a foolish endeavor
     </div>
@@ -14,11 +22,18 @@
     
     <ng-view></ng-view>
     
+    
+    <div class="footer">
+        Sometimes art happens. For such occassions, we have this space to contain it all
+    </div>
+    
     <div id="JavaScript">
         <script src="./bower_components/angular/angular.min.js" type="text/javascript"></script>
         <script src="./bower_components/angular-route/angular-route.min.js" type="text/javascript"></script>
         <script src="./bower_components/angular-animate/angular-animate.min.js" type="text/javascript"></script>
         <script src="./assets/js/app.js" type="text/javascript"></script>
     </div>
+    
+
 </body>
 </html>
