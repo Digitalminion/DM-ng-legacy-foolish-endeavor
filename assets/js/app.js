@@ -1,6 +1,6 @@
 var foolishApp = angular.module('foolishApp', ['ngRoute', 'ngAnimate']);
 
-foolishApp.config(function($routeProvider, $locationProvider){
+foolishApp.config(function($routeProvider){
   $routeProvider.when("/",
    {
      templateUrl: "assets/tpl/home.html",
@@ -13,7 +13,6 @@ foolishApp.config(function($routeProvider, $locationProvider){
      controllerAs: "about"
    }
  );
-    $locationProvider.html5Mode(true);
 });
 
 foolishApp.controller('ArtboardCtrl', function() {
