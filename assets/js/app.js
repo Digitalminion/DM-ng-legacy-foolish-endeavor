@@ -15,6 +15,7 @@ foolishApp.config(function($routeProvider){
  );
 });
 foolishApp.run(function($rootScope,$timeout, $log) {
+    $rootScope.pageMessage =" Sometimes art happens. For such occassions, we have this space to contain it all"
     var timer;
     $log.log("Things are starting");
     $rootScope.pass=1;
@@ -40,6 +41,14 @@ foolishApp.run(function($rootScope,$timeout, $log) {
 //    string or a variable that has been set with a string. The following line:
 //    $timeout(countUp('First pass', $rootScope.pass), 10000);
 //    would be valid without the need to declare var passOne;
+    
+//    TASK: In this area create a new function that changes the 
+//    "$rootScope.pageMessage" to another message after 10 seconds
+//    <--- Begin task code --->
+
+//  Replace me with code for the task    
+
+//    <--- End task code --->
 });
 foolishApp.controller('ArtboardCtrl', function() {
   //nothing here yet
