@@ -16,14 +16,28 @@ foolishApp.config(function($routeProvider){
 });
 foolishApp.run(function($rootScope,$timeout, $log) {
     $log.log("Things are starting");
-    $rootScope.timeInMs=0;
-    var countUp = function(data) {
-        $rootScope.timeInMs+= 500;
-        $log.log(data + ' - Current time: ' + $rootScope.timeInMs)
-        $timeout(countUp('Not the first time any more'), 500);
+    $rootScope.pass=1;
+    var countUp = function(message, pass) {
+        $log.log(message + ' - ' + pass)
+        if(pass == 1){
+            message = 'even';
+            pass+= 1;
+            time = 10000;
+        }
+        else{
+            message = 'odd';
+            pass-= 1;
+            time = 1000000000;
+        }
+        $timeout(countUp(message, pass), time);
     }
-    $log.log("Start - Current time: 0")
-    $timeout(countUp('First pass'), 500);
+    var passOne = 'First pass'
+    $timeout(countUp(passOne, $rootScope.pass), 1000);
+//    COMMENT: The above var passOne declaration is actually redundant but is 
+//    included for the clarity that the countUp function can take either a raw 
+//    string or a variable that has been set with a string. The following line:
+//    $timeout(countUp('First pass', $rootScope.pass), 10000);
+//    would be valid without the need to declare var passOne;
 });
 foolishApp.controller('ArtboardCtrl', function() {
   //nothing here yet
