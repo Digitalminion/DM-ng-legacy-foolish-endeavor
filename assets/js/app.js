@@ -15,21 +15,23 @@ foolishApp.config(function($routeProvider){
  );
 });
 foolishApp.run(function($rootScope,$timeout, $log) {
+    var timer;
     $log.log("Things are starting");
     $rootScope.pass=1;
-    var countUp = function(message, pass) {
-        $log.log(message + ' - ' + pass)
-        if(pass == 1){
+    var countUp = function(message, bool) {
+        $log.log(message + ' - ' + bool)
+        if(bool == 1){
             message = 'even';
-            pass+= 1;
-            time = 10000;
+            bool+= 1;
         }
         else{
             message = 'odd';
-            pass-= 1;
-            time = 1000000000;
+            bool-= 1;
         }
-        $timeout(countUp(message, pass), time);
+        $rootScope.pass+=1;
+        if($rootScope.pass < 10){
+            $timeout(countUp(message, bool), 1000);
+        }
     }
     var passOne = 'First pass'
     $timeout(countUp(passOne, $rootScope.pass), 1000);
