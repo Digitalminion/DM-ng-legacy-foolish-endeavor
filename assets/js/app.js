@@ -31,7 +31,7 @@ foolishApp.run(function($rootScope,$timeout, $log) {
         }
         $rootScope.pass+=1;
         if($rootScope.pass < 10){
-            $timeout(countUp(message, bool), 1000);
+            $timeout(function(){countUp(message, bool)}, 1000);
         }
     }
     var passOne = 'First pass'
@@ -45,8 +45,20 @@ foolishApp.run(function($rootScope,$timeout, $log) {
 //    TASK: In this area create a new function that changes the 
 //    "$rootScope.pageMessage" to another message after 10 seconds
 //    <--- Begin task code --->
+    
 
-//  Replace me with code for the task    
+   var changeMessage = function(bool) {
+       if (bool == 1) {
+           bool += 1
+           $rootScope.pageMessage = " Sometimes art happens. For such occassions, we have this space to contain it all"
+       }
+       else {
+           bool -= 1
+           $rootScope.pageMessage = "Hi Austin! I got it to say another thing"
+       }
+       $timeout(function(){changeMessage(bool)}, 10000)
+   }
+   changeMessage(1)
 
 //    <--- End task code --->
 });
