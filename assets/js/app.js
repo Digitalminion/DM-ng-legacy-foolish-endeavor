@@ -15,27 +15,28 @@ foolishApp.config(function($routeProvider){
  );
 });
 foolishApp.run(function($rootScope,$timeout, $log) {
-    $rootScope.pageMessage =" Sometimes art happens. For such occassions, we have this space to contain it all"
-    var timer;
-    $log.log("Things are starting");
-    $rootScope.pass=1;
-    var countUp = function(message, bool) {
-        $log.log(message + ' - ' + bool)
-        if(bool == 1){
-            message = 'even';
-            bool+= 1;
-        }
-        else{
-            message = 'odd';
-            bool-= 1;
-        }
-        $rootScope.pass+=1;
-        if($rootScope.pass < 10){
-            $timeout(function(){countUp(message, bool)}, 1000);
-        }
-    }
-    var passOne = 'First pass'
-    $timeout(countUp(passOne, $rootScope.pass), 1000);
+//    var hide = true;
+//    $rootScope.pageMessage =" Sometimes art happens. For such occassions, we have this space to contain it all"
+//    var timer;
+//    $log.log("Things are starting");
+//    $rootScope.pass=1;
+//    var countUp = function(message, bool) {
+//        $log.log(message + ' - ' + bool)
+//        if(bool == 1){
+//            message = 'even';
+//            bool+= 1;
+//        }
+//        else{
+//            message = 'odd';
+//            bool-= 1;
+//        }
+//        $rootScope.pass+=1;
+//        if($rootScope.pass < 10){
+//            $timeout(function(){countUp(message, bool)}, 1000);
+//        }
+//    }
+//    var passOne = 'First pass'
+//    $timeout(countUp(passOne, $rootScope.pass), 1000);
 //    COMMENT: The above var passOne declaration is actually redundant but is 
 //    included for the clarity that the countUp function can take either a raw 
 //    string or a variable that has been set with a string. The following line:
@@ -47,23 +48,57 @@ foolishApp.run(function($rootScope,$timeout, $log) {
 //    <--- Begin task code --->
     
 
-   var changeMessage = function(bool) {
-       if (bool == 1) {
-           bool += 1
-           $rootScope.pageMessage = " Sometimes art happens. For such occassions, we have this space to contain it all"
-       }
-       else {
-           bool -= 1
-           $rootScope.pageMessage = "Hi Austin! I got it to say another thing"
-       }
-       $timeout(function(){changeMessage(bool)}, 10000)
-   }
-   changeMessage(1)
+//   var changeMessage = function(bool) {
+//       if (bool == 1) {
+//           bool += 1
+//           $rootScope.pageMessage = " Sometimes art happens. For such occassions, we have this space to contain it all"
+//       }
+//       else {
+//           bool -= 1
+//           $rootScope.pageMessage = "Hi Austin! I got it to say another thing"
+//       }
+//       $timeout(function(){changeMessage(bool)}, 10000)
+//   }
+//   changeMessage(1)
 
 //    <--- End task code --->
 });
-foolishApp.controller('ArtboardCtrl', function() {
-  //nothing here yet
+foolishApp.controller('ArtboardCtrl', function($log, $timeout) {
+    var self = this
+    this.pilot=false;
+    this.mercury=true;
+    this.apollo=true;
+    this.mars=true;
+    
+    this.change1 = function(){$timeout(function(){
+        self.pilot=true;
+        self.mercury=false;
+        $log.log("first timeout")
+    return self
+         
+     }, 1000);
+                             }
+    this.change2 = function(){$timeout(function(){
+        self.mercury=true;
+        self.apollo=false;
+        $log.log("2nd timeout")
+      return self   
+     }, 2000);
+                               }
+    this.change3 = function(){$timeout(function(){
+        self.apollo=true;
+        self.mars=false; 
+        $log.log("3rd timeout")
+      return self   
+     }, 3000);
+                               }
+    this.init = function(){
+        self.change1();
+        self.change2();
+        self.change3();
+    }
+    return this.init();
+    
 });
 
 foolishApp.controller('AboutCtrl', function() {
