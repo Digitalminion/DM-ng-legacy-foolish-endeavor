@@ -84,6 +84,7 @@ foolishApp.controller('ArtboardCtrl', function ($log, $timeout) {
         this.apollo = status[2];
         this.mars = status[3];
         //shows astronauts in current state
+        refresh(this);
         
     }
     
