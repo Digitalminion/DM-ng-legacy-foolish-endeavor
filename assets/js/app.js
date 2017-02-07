@@ -57,53 +57,36 @@ foolishApp.run(function ($rootScope, $timeout, $log) {
 });
 foolishApp.controller('ArtboardCtrl', function ($log, $timeout) {
     var status = [false, true, true, true];
-    index = 0;
-    timer = 1000;
+    var index = 0;
+    var timer = 1000;
+    
     this.pilot = status[0];
     this.mercury = status[1];
     this.apollo = status[2];
     this.mars = status[3];
     
-    //made boolean array
-    
-    this.change = function(){
-        lastindex = index;
+    var refresh = function(s){
+        $timeout(function(){
+        var lastindex = index;
         index += 1;
         if (index == status.length) {
             index = 0;
-            //resets index to 0 at end of array
         };
         
         status[lastindex] = true;
         status[index] = false;
-        //toggles boolean in array. Effectively replacing old code
         $log.log("test");
 
-        this.pilot = status[0];
-        this.mercury = status[1];
-        this.apollo = status[2];
-        this.mars = status[3];
-        //shows astronauts in current state
-        refresh(this);
+        s.pilot = status[0];
+        s.mercury = status[1];
+        s.apollo = status[2];
+        s.mars = status[3];
+        refresh(s)
         
-    }
+        }, 1000);
+    };
     
-    refresh = function(input){
-         $timeout(function(){input.change(
-         lastindex = index;
-        index += 1;
-        if (index == status.length) {
-            index = 0;
-            //resets index to 0 at end of array
-        };
-        
-        status[lastindex] = true;
-        status[index] = false;
-        //toggles boolean in array. Effectively replacing old code
-        $log.log("test");
-         )}, timer)
-    }
-    refresh(this);  
+    refresh(this); 
 });
     //    var self = this
     //    this.pilot=false;
