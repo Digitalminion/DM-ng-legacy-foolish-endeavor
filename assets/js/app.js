@@ -89,7 +89,19 @@ foolishApp.controller('ArtboardCtrl', function ($log, $timeout) {
     }
     
     refresh = function(input){
-         $timeout(function(){input.change()}, timer)
+         $timeout(function(){input.change(
+         lastindex = index;
+        index += 1;
+        if (index == status.length) {
+            index = 0;
+            //resets index to 0 at end of array
+        };
+        
+        status[lastindex] = true;
+        status[index] = false;
+        //toggles boolean in array. Effectively replacing old code
+        $log.log("test");
+         )}, timer)
     }
     refresh(this);  
 });
