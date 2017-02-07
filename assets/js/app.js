@@ -88,42 +88,12 @@ foolishApp.controller('ArtboardCtrl', function ($log, $timeout) {
     
     refresh(this); 
 });
-    //    var self = this
-    //    this.pilot=false;
-    //    this.mercury=true;
-    //    this.apollo=true;
-    //    this.mars=true;
-    //    
-    //    this.change1 = function(){$timeout(function(){
-    //        self.pilot=true;
-    //        self.mercury=false;
-    //        $log.log("first timeout")
-    //    return self
-    //         
-    //     }, 1000);
-    //                             }
-    //    this.change2 = function(){$timeout(function(){
-    //        self.mercury=true;
-    //        self.apollo=false;
-    //        $log.log("2nd timeout")
-    //      return self   
-    //     }, 2000);
-    //                               }
-    //    this.change3 = function(){$timeout(function(){
-    //        self.apollo=true;
-    //        self.mars=false; 
-    //        $log.log("3rd timeout")
-    //      return self   
-    //     }, 3000);
-    //                               }
-    //    this.init = function(){
-    //        self.change1();
-    //        self.change2();
-    //        self.change3();
-    //    }
-    //    return this.init();
-    //    
-    //});
+
+
+reloadRoute = function(){
+     $route.reload();
+ }
+     
 foolishApp.controller('AboutCtrl', function () {
     //nothing here yet
 });
