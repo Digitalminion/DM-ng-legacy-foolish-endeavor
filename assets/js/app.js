@@ -55,7 +55,7 @@ foolishApp.run(function ($rootScope, $timeout, $log) {
     //   changeMessage(1)
     //    <--- End task code --->
 });
-foolishApp.controller('ArtboardCtrl', function ($log, $timeout) {
+foolishApp.controller('ArtboardCtrl', function ($scope,$log, $timeout) {
     var status = [false, true, true, true];
     var index = 0;
     var timer = 1000;
@@ -87,12 +87,15 @@ foolishApp.controller('ArtboardCtrl', function ($log, $timeout) {
     };
     
     refresh(this); 
+    
+    $scope.reloadRoute = function(){
+        $log.log("Blahblah!");
+        $route.reload(); 
+    }
 });
 
 
-reloadRoute = function(){
-     $route.reload();
- }
+
      
 foolishApp.controller('AboutCtrl', function () {
     //nothing here yet
