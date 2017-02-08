@@ -55,42 +55,87 @@ foolishApp.run(function ($rootScope, $timeout, $log) {
     //   changeMessage(1)
     //    <--- End task code --->
 });
-foolishApp.controller('ArtboardCtrl', function ($scope,$log, $timeout) {
-    var status = [false, true, true, true];
-    var index = 0;
-    var timer = 1000;
+foolishApp.controller('ArtboardCtrl', function ($scope, $log, $timeout) {
+    var self = this;
+    var status;
+    var index;
+    var timeout;
     
-    this.pilot = status[0];
-    this.mercury = status[1];
-    this.apollo = status[2];
-    this.mars = status[3];
+    //
+    // Note that we no longer initialize variables up top here,
+    // but rather we do it in an initialization function below
+    //
+    //var status = [false, true, true, true];
+    //var index = 0;
+    //var timeout = null;
+    //this.pilot = status[0];
+    //this.mercury = status[1];
+    //this.apollo = status[2];
+    //this.mars = status[3];
     
-    var refresh = function(s){
-        $timeout(function(){
-        var lastindex = index;
-        index += 1;
-        if (index == status.length) {
-            index = 0;
-        };
-        
-        status[lastindex] = true;
-        status[index] = false;
-        $log.log("test");
+    //
+    // This function schedules a timer to move the SVG forward one step
+    // The embedded function is passed to $timeout() which results in a promise
+    // which we save as "this.timeout"
+    // Note that "this" and "self" mean this controller.
+    // However, inside the promise, "this" becomes the context of the promise,
+    // and not the context of the controller!  That's why we save the context
+    // of the controller in the "self" local variable, so it is visible here.
+    //
+    var step = function(s) {
+        timeout = $timeout(function() {
+            // Advance the "index" by one, wrapping around if necessary.
+            // This chould also be done as:
+            //      index = (index + 1) % status.length
+            var lastindex = index;
+            index += 1;
+            if (index == status.length) {
+                index = 0;
+            };
 
-        s.pilot = status[0];
-        s.mercury = status[1];
-        s.apollo = status[2];
-        s.mars = status[3];
-        refresh(s)
-        
-        }, 1000);
+            // Update the internal state of the astronauts,
+            // then sync the svg to our internal state.
+            status[lastindex] = true;
+            status[index] = false;
+            self.pilot = status[0];
+            self.mercury = status[1];
+            self.apollo = status[2];
+            self.mars = status[3];
+
+            // Finally, call ourselves again to schedule another step
+            step(self)
+        }, 1000)
     };
     
-    refresh(this); 
+    // This function sets the variables to a known state.
+    // This is the initial configuration for these variables.
+    // When the reset is done, we schedule the timer (step())
+    var restart = function(){
+        // If there is currently a timeout pending, cancel it.
+        $timeout.cancel(timeout);
+        //timeout = null;
+
+        // Set the variables to a known initial state
+        status = [false, true, true, true];
+        index = 0;
+        
+        // Sync the SVG to our internal state
+        self.pilot = status[0];
+        self.mercury = status[1];
+        self.apollo = status[2];
+        self.mars = status[3];
+
+        // Start the stepping process
+        step(self)
+    };
     
+    // Bootstrap the SVG the first time we load it.
+    restart(); 
+    
+    // This is an ng-click callback from an SVG, we reset the state.
     $scope.reloadRoute = function(){
         $log.log("Blahblah!");
-        $route.reload(); 
+        restart()
     }
 });
 
