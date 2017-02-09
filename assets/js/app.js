@@ -130,7 +130,7 @@ foolishApp.controller('ArtboardCtrl', function ($scope, $log, $timeout) {
     };
     
     // Bootstrap the SVG the first time we load it.
-    restart(); 
+    //restart(); 
     
     // This is an ng-click callback from an SVG, we reset the state.
     $scope.reloadRoute = function(){
