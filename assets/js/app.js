@@ -116,7 +116,7 @@ foolishApp.controller('ArtboardCtrl', function ($scope, $log, $timeout) {
         //timeout = null;
 
         // Set the variables to a known initial state
-        status = [false, true, true, true];
+        status = [self.pilot, self.mercury, self.apollo, self.mars];
         index = 0;
         
         // Sync the SVG to our internal state
