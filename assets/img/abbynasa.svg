@@ -243,7 +243,7 @@
         </style>
     </defs>
     <title>Astronauts</title>
-    <g id="Layer_2" data-name="Layer 2" ng-mouseover="reloadRoute()">
+    <g id="Layer_2" data-name="Layer 2" ng-click="reloadRoute()" ng-mouseover="startHover()" ng-mouseleave="stopHover()">
         <rect class="cls-1" x="-9" y="-11" width="922" height="326" />
     </g>
     <g id="Pilot" ng-hide="artboard.pilot">
