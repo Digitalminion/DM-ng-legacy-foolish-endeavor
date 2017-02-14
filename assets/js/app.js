@@ -16,7 +16,6 @@ foolishApp.run(function ($rootScope, $timeout, $log) {
 foolishApp.controller('ArtboardCtrl', function ($scope, $log, $timeout) {
     var self = this;
     var status;
-    var index;
     var timeout;
     
     self.pilot = true;
@@ -27,32 +26,32 @@ foolishApp.controller('ArtboardCtrl', function ($scope, $log, $timeout) {
     var step = function(s) {
         timeout = $timeout(function() {
            
-            if (self.pilot==false){
-            self.pilot = true;
-            self.mercury = false;
-            self.apollo = true;
-            self.mars = true;
+            if (s.pilot==false){
+            s.pilot = true;
+            s.mercury = false;
+            s.apollo = true;
+            s.mars = true;
             }
-            else if(self.mercury==false){
-            self.pilot = true;
-            self.mercury = true;
-            self.apollo = false;
-            self.mars = true;               
+            else if(s.mercury==false){
+            s.pilot = true;
+            s.mercury = true;
+            s.apollo = false;
+            s.mars = true;               
             }
-            else if(self.apollo==false){
-            self.pilot = true;
-            self.mercury = true;
-            self.apollo = true;
-            self.mars = false;
+            else if(s.apollo==false){
+            s.pilot = true;
+            s.mercury = true;
+            s.apollo = true;
+            s.mars = false;
             }
             else {
-            self.pilot = false;
-            self.mercury = true;
-            self.apollo = true;
-            self.mars = true; 
+            s.pilot = false;
+            s.mercury = true;
+            s.apollo = true;
+            s.mars = true; 
             }
             // Finally, call ourselves again to schedule another step
-            step(self)
+            step(s)
         }, 1000)
     };
     
@@ -82,7 +81,7 @@ foolishApp.controller('ArtboardCtrl', function ($scope, $log, $timeout) {
         $log.log("Blahblah!");
         restart();
     }
-});
+
 
     $scope.startHover = function(){
         $timeout.cancel(timeout);
@@ -93,7 +92,7 @@ foolishApp.controller('ArtboardCtrl', function ($scope, $log, $timeout) {
         timeout = null;
     }
 
-
+});
      
 foolishApp.controller('AboutCtrl', function () {
     //nothing here yet
