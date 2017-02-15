@@ -15,7 +15,6 @@ foolishApp.run(function ($rootScope, $timeout, $log) {
 });
 foolishApp.controller('ArtboardCtrl', function ($scope, $log, $timeout) {
     var self = this;
-    var status;
     var timeout;
     
     self.pilot = true;
@@ -52,8 +51,7 @@ foolishApp.controller('ArtboardCtrl', function ($scope, $log, $timeout) {
             }
             // Finally, call ourselves again to schedule another step
             step(s)
-        }, 1000)
-    };
+        }, 1000)};
     
     // This function sets the variables to a known state.
     // This is the initial configuration for these variables.
@@ -94,6 +92,87 @@ foolishApp.controller('ArtboardCtrl', function ($scope, $log, $timeout) {
 
 });
      
-foolishApp.controller('AboutCtrl', function () {
-    //nothing here yet
+foolishApp.controller('AboutCtrl', function ($scope, $timeout, $log) 
+{
+    var self= this;
+    var timeout;
+    
+    self.petal_6=false;
+    self.petal_5=false;
+    self.petal_4=false;
+    self.petal_3=true;
+    self.petal_2=true;
+    self.petal_1=true;
+    $log.log("first step");
+    
+        
+        var step= function(a){
+            timeout = $timeout(function(){
+            
+            if (a.petal_6==false){
+                    a.petal_6=false;
+                    a.petal_5=false;
+                    a.petal_4=true;
+                    a.petal_3=true;
+                    a.petal_2=true;
+                    a.petal_1=true;
+                    $log.log("step 2");
+                    }
+            else if (a.petal_5==false){
+                    a.petal_6=false;
+                    a.petal_5=false;
+                    a.petal_4=false;
+                    a.petal_3=true;
+                    a.petal_2=true;
+                    a.petal_1=true;
+                    }
+            else if (a.petal_4==false){
+                    a.petal_6=false;
+                    a.petal_5=false;
+                    a.petal_4=false;
+                    a.petal_3=false;
+                    a.petal_2=true;
+                    a.petal_1=true;
+                    }
+            else if (a.petal_3==false){
+                    a.petal_6=false;
+                    a.petal_5=false;
+                    a.petal_4=false;
+                    a.petal_3=false;
+                    a.petal_2=false;
+                    a.petal_1=true;
+                    }
+            else if (a.petal_2==false){
+                    a.petal_6=false;
+                    a.petal_5=false;
+                    a.petal_4=false;
+                    a.petal_3=false;
+                    a.petal_2=false;
+                    a.petal_1=false;
+                    }
+            else{
+                    a.petal_6=true;
+                    a.petal_5=true;
+                    a.petal_4=true;
+                    a.petal_3=true;
+                    a.petal_2=true;
+                    a.petal_1=true;
+                    }
+            step(a);  
+            }, 1000)};
+
+    var restart= function(){
+        $timeout.cancel(timeout);
+        timeout=null;
+        
+                    a.petal_6=true;
+                    a.petal_5=true;
+                    a.petal_4=true;
+                    a.petal_3=true;
+                    a.petal_2=true;
+                    a.petal_1=true;
+        
+        step(self);
+    }
+    
 });
