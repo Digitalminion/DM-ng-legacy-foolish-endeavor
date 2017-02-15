@@ -105,75 +105,75 @@ foolishApp.controller('AboutCtrl', function ($scope, $timeout, $log)
     $log.log("first step");
     
         
-        var step= function(a){
-            timeout = $timeout(function(){
-            
-            if (a.Petal_6==false){
-                    a.Petal_6=false;
-                    a.Petal_5=false;
-                    a.Petal_4=true;
-                    a.Petal_2=true;
-                    a.Petal_1=true;
-                    $log.log("step 2");
-                    }
-            else if (a.Petal_5==false){
-                    a.Petal_6=false;
-                    a.Petal_5=false;
-                    a.Petal_4=false;
-                    a.Petal_2=true;
-                    a.Petal_1=true;
-                    }
-            else if (a.Petal_4==false){
-                    a.Petal_6=false;
-                    a.Petal_5=false;
-                    a.Petal_4=false;
-                    a.Petal_2=true;
-                    a.Petal_1=true;
-                    }
-            else if (a.Petal_3==false){
-                    a.Petal_6=false;
-                    a.Petal_5=false;
-                    a.Petal_4=false;
-                    a.Petal_2=false;
-                    a.Petal_1=true;
-                    }
-            else if (a.Petal_2==false){
-                    a.Petal_6=false;
-                    a.Petal_5=false;
-                    a.Petal_4=false;
-                    a.Petal_2=false;
-                    a.Petal_1=false;
-                    }
-//            else{
+//        var step= function(a){
+//            timeout = $timeout(function(){
+//            
+//            if (a.Petal_6==false){
+//                    a.Petal_6=false;
+//                    a.Petal_5=false;
+//                    a.Petal_4=true;
+//                    a.Petal_2=true;
+//                    a.Petal_1=true;
+//                    $log.log("step 2");
+//                    }
+//            else if (a.Petal_5==false){
+//                    a.Petal_6=false;
+//                    a.Petal_5=false;
+//                    a.Petal_4=false;
+//                    a.Petal_2=true;
+//                    a.Petal_1=true;
+//                    }
+//            else if (a.Petal_4==false){
+//                    a.Petal_6=false;
+//                    a.Petal_5=false;
+//                    a.Petal_4=false;
+//                    a.Petal_2=true;
+//                    a.Petal_1=true;
+//                    }
+//            else if (a.Petal_3==false){
+//                    a.Petal_6=false;
+//                    a.Petal_5=false;
+//                    a.Petal_4=false;
+//                    a.Petal_2=false;
+//                    a.Petal_1=true;
+//                    }
+//            else if (a.Petal_2==false){
+//                    a.Petal_6=false;
+//                    a.Petal_5=false;
+//                    a.Petal_4=false;
+//                    a.Petal_2=false;
+//                    a.Petal_1=false;
+//                    }
+////            else{
+////                    a.Petal_6=true;
+////                    a.Petal_5=true;
+////                    a.Petal_4=true;
+////                    a.Petal_2=true;
+////                    a.Petal_1=true;
+////                    }
+//            step(a);  
+//            }, 1000)};
+//
+//    var restart= function(){
+//        $timeout.cancel(timeout);
+//        timeout=null;
+//        
 //                    a.Petal_6=true;
 //                    a.Petal_5=true;
 //                    a.Petal_4=true;
 //                    a.Petal_2=true;
 //                    a.Petal_1=true;
-//                    }
-            step(a);  
-            }, 1000)};
-
-    var restart= function(){
-        $timeout.cancel(timeout);
-        timeout=null;
-        
-                    a.Petal_6=true;
-                    a.Petal_5=true;
-                    a.Petal_4=true;
-                    a.Petal_2=true;
-                    a.Petal_1=true;
-        
-        step(self);
-    }
-    
-        $scope.startHover = function(){
-        $timeout.cancel(timeout);
-        step();
-    }
-    $scope.stopHover = function(){
-        $timeout.cancel(timeout);
-        timeout = null;
-    }
+//        
+//        step(self);
+//    }
+//    
+//        $scope.startHover = function(){
+//        $timeout.cancel(timeout);
+//        step();
+//    }
+//    $scope.stopHover = function(){
+//        $timeout.cancel(timeout);
+//        timeout = null;
+//    }
     
 });
