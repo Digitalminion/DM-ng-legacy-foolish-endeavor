@@ -83,11 +83,11 @@ foolishApp.controller('ArtboardCtrl', function ($scope, $log, $timeout) {
 
     $scope.startHover = function(){
         $timeout.cancel(timeout);
-        step();
+        step(self);
     }
     $scope.stopHover = function(){
         $timeout.cancel(timeout);
-        timeout = null;
+        //timeout = null;
     }
 
 });
@@ -97,79 +97,77 @@ foolishApp.controller('AboutCtrl', function ($scope, $timeout, $log)
     var self= this;
     var timeout;
     
-    self.Petal_6=false;
-    self.Petal_5=false;
-    self.Petal_4=false;
+    self.Petal_6=true;
+    self.Petal_5=true;
     self.Petal_2=true;
     self.Petal_1=true;
     $log.log("first step");
     
         
-//        var step= function(a){
-//            timeout = $timeout(function(){
-//            
-//            if (a.Petal_6==false){
-//                    a.Petal_6=false;
-//                    a.Petal_5=false;
-//                    a.Petal_4=true;
-//                    a.Petal_2=true;
-//                    a.Petal_1=true;
-//                    $log.log("step 2");
-//                    }
-//            else if (a.Petal_5==false){
-//                    a.Petal_6=false;
-//                    a.Petal_5=false;
-//                    a.Petal_4=false;
-//                    a.Petal_2=true;
-//                    a.Petal_1=true;
-//                    }
-//            else if (a.Petal_4==false){
-//                    a.Petal_6=false;
-//                    a.Petal_5=false;
-//                    a.Petal_4=false;
-//                    a.Petal_2=true;
-//                    a.Petal_1=true;
-//                    }
-//            else if (a.Petal_3==false){
-//                    a.Petal_6=false;
-//                    a.Petal_5=false;
-//                    a.Petal_4=false;
-//                    a.Petal_2=false;
-//                    a.Petal_1=true;
-//                    }
-//            else if (a.Petal_2==false){
-//                    a.Petal_6=false;
-//                    a.Petal_5=false;
-//                    a.Petal_4=false;
-//                    a.Petal_2=false;
-//                    a.Petal_1=false;
-//                    }
-////            else{
-////                    a.Petal_6=true;
-////                    a.Petal_5=true;
-////                    a.Petal_4=true;
-////                    a.Petal_2=true;
-////                    a.Petal_1=true;
-////                    }
-//            step(a);  
-//            }, 1000)};
-//
-//    var restart= function(){
-//        $timeout.cancel(timeout);
-//        timeout=null;
-//        
-//                    a.Petal_6=true;
-//                    a.Petal_5=true;
-//                    a.Petal_4=true;
-//                    a.Petal_2=true;
-//                    a.Petal_1=true;
-//        
-//        step(self);
+        var step= function(a){
+            timeout = $timeout(function(){
+            
+            if (a.Petal_6==false){
+            a.Petal_6=true;
+            a.Petal_4=false;
+            a.Petal_5=true;
+            a.Petal_2=true;
+            a.Petal_1=true;
+            $log.log("step 2");
+            }
+            else if (a.Petal_4==false){
+            a.Petal_6=true;
+            a.Petal_4=true;
+            a.Petal_5=false;
+            a.Petal_2=true;
+            a.Petal_1=true;
+            }
+            else if (a.Petal_5==false){
+            a.Petal_6=true;
+            a.Petal_4=true;
+            a.Petal_5=true;
+            a.Petal_2=false;
+            a.Petal_1=true;
+            }
+            else if (a.Petal_2==false){
+            a.Petal_6=true;
+            a.Petal_4=true;
+            a.Petal_5=true;
+            a.Petal_2=true;
+            a.Petal_1=false;
+            }
+            else{
+            a.Petal_6=false;
+            a.Petal_4=true;
+            a.Petal_5=true;
+            a.Petal_2=true;
+            a.Petal_1=true;
+            }
+            step(a);
+            }, 1000)};
+
+    var restart= function(){
+        $timeout.cancel(timeout);
+        timeout=null;
+        
+                    self.Petal_6=false;
+                    self.Petal_5=true;
+                    self.Petal_4=true;
+                    self.Petal_2=true;
+                    self.Petal_1=true;
+        
+        step(self);
+        }
+
+      restart();
+    //        $scope.reloadRoute = function(){
+//        $log.log("Here I Am!");
+//        restart();
 //    }
-//    
+//
 //        $scope.startHover = function(){
 //        $timeout.cancel(timeout);
-//        step();
+//        step(self);
 //    }
 //    $scope.stopHover = function(){
 //        $timeout.cancel(timeout);
