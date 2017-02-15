@@ -97,67 +97,60 @@ foolishApp.controller('AboutCtrl', function ($scope, $timeout, $log)
     var self= this;
     var timeout;
     
-    self.petal_6=false;
-    self.petal_5=false;
-    self.petal_4=false;
-    self.petal_3=true;
-    self.petal_2=true;
-    self.petal_1=true;
+    self.Petal_6=false;
+    self.Petal_5=false;
+    self.Petal_4=false;
+    self.Petal_2=true;
+    self.Petal_1=true;
     $log.log("first step");
     
         
         var step= function(a){
             timeout = $timeout(function(){
             
-            if (a.petal_6==false){
-                    a.petal_6=false;
-                    a.petal_5=false;
-                    a.petal_4=true;
-                    a.petal_3=true;
-                    a.petal_2=true;
-                    a.petal_1=true;
+            if (a.Petal_6==false){
+                    a.Petal_6=false;
+                    a.Petal_5=false;
+                    a.Petal_4=true;
+                    a.Petal_2=true;
+                    a.Petal_1=true;
                     $log.log("step 2");
                     }
-            else if (a.petal_5==false){
-                    a.petal_6=false;
-                    a.petal_5=false;
-                    a.petal_4=false;
-                    a.petal_3=true;
-                    a.petal_2=true;
-                    a.petal_1=true;
+            else if (a.Petal_5==false){
+                    a.Petal_6=false;
+                    a.Petal_5=false;
+                    a.Petal_4=false;
+                    a.Petal_2=true;
+                    a.Petal_1=true;
                     }
-            else if (a.petal_4==false){
-                    a.petal_6=false;
-                    a.petal_5=false;
-                    a.petal_4=false;
-                    a.petal_3=false;
-                    a.petal_2=true;
-                    a.petal_1=true;
+            else if (a.Petal_4==false){
+                    a.Petal_6=false;
+                    a.Petal_5=false;
+                    a.Petal_4=false;
+                    a.Petal_2=true;
+                    a.Petal_1=true;
                     }
-            else if (a.petal_3==false){
-                    a.petal_6=false;
-                    a.petal_5=false;
-                    a.petal_4=false;
-                    a.petal_3=false;
-                    a.petal_2=false;
-                    a.petal_1=true;
+            else if (a.Petal_3==false){
+                    a.Petal_6=false;
+                    a.Petal_5=false;
+                    a.Petal_4=false;
+                    a.Petal_2=false;
+                    a.Petal_1=true;
                     }
-            else if (a.petal_2==false){
-                    a.petal_6=false;
-                    a.petal_5=false;
-                    a.petal_4=false;
-                    a.petal_3=false;
-                    a.petal_2=false;
-                    a.petal_1=false;
+            else if (a.Petal_2==false){
+                    a.Petal_6=false;
+                    a.Petal_5=false;
+                    a.Petal_4=false;
+                    a.Petal_2=false;
+                    a.Petal_1=false;
                     }
-            else{
-                    a.petal_6=true;
-                    a.petal_5=true;
-                    a.petal_4=true;
-                    a.petal_3=true;
-                    a.petal_2=true;
-                    a.petal_1=true;
-                    }
+//            else{
+//                    a.Petal_6=true;
+//                    a.Petal_5=true;
+//                    a.Petal_4=true;
+//                    a.Petal_2=true;
+//                    a.Petal_1=true;
+//                    }
             step(a);  
             }, 1000)};
 
@@ -165,14 +158,22 @@ foolishApp.controller('AboutCtrl', function ($scope, $timeout, $log)
         $timeout.cancel(timeout);
         timeout=null;
         
-                    a.petal_6=true;
-                    a.petal_5=true;
-                    a.petal_4=true;
-                    a.petal_3=true;
-                    a.petal_2=true;
-                    a.petal_1=true;
+                    a.Petal_6=true;
+                    a.Petal_5=true;
+                    a.Petal_4=true;
+                    a.Petal_2=true;
+                    a.Petal_1=true;
         
         step(self);
+    }
+    
+        $scope.startHover = function(){
+        $timeout.cancel(timeout);
+        step();
+    }
+    $scope.stopHover = function(){
+        $timeout.cancel(timeout);
+        timeout = null;
     }
     
 });
