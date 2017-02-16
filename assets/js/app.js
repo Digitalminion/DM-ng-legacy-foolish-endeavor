@@ -107,42 +107,56 @@ foolishApp.controller('AboutCtrl', function ($scope, $timeout, $log)
         var step= function(a){
             timeout = $timeout(function(){
             
-            if (a.Petal_6==false){
-            a.Petal_6=true;
-            a.Petal_4=false;
-            a.Petal_5=true;
-            a.Petal_2=true;
-            a.Petal_1=true;
-            $log.log("step 2");
-            }
-            else if (a.Petal_4==false){
-            a.Petal_6=true;
-            a.Petal_4=true;
-            a.Petal_5=false;
-            a.Petal_2=true;
-            a.Petal_1=true;
-            }
-            else if (a.Petal_5==false){
-            a.Petal_6=true;
-            a.Petal_4=true;
-            a.Petal_5=true;
-            a.Petal_2=false;
-            a.Petal_1=true;
-            }
-            else if (a.Petal_2==false){
-            a.Petal_6=true;
-            a.Petal_4=true;
-            a.Petal_5=true;
-            a.Petal_2=true;
-            a.Petal_1=false;
-            }
-            else{
-            a.Petal_6=false;
-            a.Petal_4=true;
-            a.Petal_5=true;
-            a.Petal_2=true;
-            a.Petal_1=true;
-            }
+switch(true) {
+		case (a.Petal_6 && a.Petal_4 && a.Petal_5 && a.Petal_2 && a.Petal_1):
+			a.Petal_6=false;
+                    		a.Petal_4=true;
+                    		a.Petal_5=true;
+                    		a.Petal_2=true;
+                    		a.Petal_1=true;
+			break;
+		case (!a.Petal_6 && a.Petal_4 && a.Petal_5 && a.Petal_2 && a.Petal_1):
+			a.Petal_6=false;
+                    		a.Petal_4=false;
+                    		a.Petal_5=true;
+                    		a.Petal_2=true;
+                    		a.Petal_1=true;
+			break;
+		case (!a.Petal_6 && !a.Petal_4 && a.Petal_5 && a.Petal_2 && a.Petal_1):
+			a.Petal_6=false;
+                    		a.Petal_4=false;
+                    		a.Petal_5=false;
+                    		a.Petal_2=true;
+                    		a.Petal_1=true;
+			break;
+		case (!a.Petal_6 && !a.Petal_4 && !a.Petal_5 && a.Petal_2 && a.Petal_1):
+			a.Petal_6=false;
+                    		a.Petal_4=false;
+                    		a.Petal_5=false;
+                    		a.Petal_2=false;
+                    		a.Petal_1=true;
+			break;
+		case (!a.Petal_6 && !a.Petal_4 && !a.Petal_5 && !a.Petal_2 && a.Petal_1):
+			a.Petal_6=false;
+                    		a.Petal_4=false;
+                    		a.Petal_5=false;
+                    		a.Petal_2=false;
+                    		a.Petal_1=false;
+			break;
+		
+		default:
+			a.Petal_6=true;
+                    		a.Petal_5=true;
+                    		a.Petal_4=true;
+                    		a.Petal_2=true;
+                    		a.Petal_1=true;
+			break;
+
+
+	}
+
+
+
             step(a);
             }, 1000)};
 
