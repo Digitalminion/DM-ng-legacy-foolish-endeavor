@@ -4,6 +4,7 @@
 </head>
 <body ng-app="foolishApp">
     <div class="header">
+<!--
             <nav>
                 <font face="SnellRoundhand">
                 <a href="#!/">Home</a>
@@ -11,6 +12,7 @@
                 <a href='#!/about'>About</a>
                 </font>
             </nav>
+-->
         
         
     </div>	
@@ -24,6 +26,14 @@
     
     <ng-view></ng-view>
     
+    <div>
+    <nav>
+        <a href="#!/">Home</a>
+        <a href="#!/about">About</a>
+        <a href="#!/">Portfolio</a>
+        <a href="#!/">Contact</a>
+    </nav>
+    </div>
     
     <div class="footer">
        {{pageMessage}}
