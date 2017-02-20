@@ -82,11 +82,6 @@ foolishApp.controller('ArtboardCtrl', function ($scope, $log, $timeout) {
 foolishApp.controller('AboutCtrl', function ($scope, $timeout, $log) {
     var self = this;
     var timeout;
-    self.Petal_6 = true;
-    self.Petal_4 = true;
-    self.Petal_5 = true;
-    self.Petal_2 = true;
-    self.Petal_1 = true;
     $log.log("first step");
     var step = function (a) {
         timeout = $timeout(function () {
@@ -143,7 +138,7 @@ foolishApp.controller('AboutCtrl', function ($scope, $timeout, $log) {
     var restart = function () {
         $timeout.cancel(timeout);
         timeout = null;
-        self.Petal_1 = false;
+        self.Petal_1 = true;
         self.Petal_2 = true;
         self.Petal_3 = true;
         self.Petal_4 = true;
