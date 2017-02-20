@@ -86,47 +86,47 @@ foolishApp.controller('AboutCtrl', function ($scope, $timeout, $log) {
     var step = function (a) {
         timeout = $timeout(function () {
             
-            var m_array = [a.Petal_1, a.Petal_2, a.Petal_3, a.Petal_4, a.Petal_5]
+            var m_array = [a.Petal_2, a.Petal_1, a.Petal_3, a.Petal_4, a.Petal_5]
             
             switch (true) {
-            case (a.Petal_1 && a.Petal_2 && a.Petal_3 && a.Petal_4 && a.Petal_5):
-                a.Petal_1 = false;
-                a.Petal_2 = true;
+            case (a.Petal_2 && a.Petal_1 && a.Petal_3 && a.Petal_4 && a.Petal_5):
+                a.Petal_2 = false;
+                a.Petal_1 = true;
                 a.Petal_3 = true;
                 a.Petal_4 = true;
                 a.Petal_5 = true;
                 break;
-            case (!a.Petal_1 && a.Petal_2 && a.Petal_3 && a.Petal_4 && a.Petal_5):
-                a.Petal_1 = false;
+            case (!a.Petal_2 && a.Petal_1 && a.Petal_3 && a.Petal_4 && a.Petal_5):
                 a.Petal_2 = false;
+                a.Petal_1 = false;
                 a.Petal_3 = true;
                 a.Petal_4 = true;
                 a.Petal_5 = true;
                 break;
-            case (!a.Petal_1 && !a.Petal_2 && a.Petal_3 && a.Petal_4 && a.Petal_5):
-                a.Petal_1 = false;
+            case (!a.Petal_2 && !a.Petal_1 && a.Petal_3 && a.Petal_4 && a.Petal_5):
                 a.Petal_2 = false;
+                a.Petal_1 = false;
                 a.Petal_3 = false;
                 a.Petal_4 = true;
                 a.Petal_5 = true;
                 break;
-            case (!a.Petal_1 && !a.Petal_2 && !a.Petal_3 && a.Petal_4 && a.Petal_5):
-                a.Petal_1 = false;
+            case (!a.Petal_2 && !a.Petal_1 && !a.Petal_3 && a.Petal_4 && a.Petal_5):
                 a.Petal_2 = false;
+                a.Petal_1 = false;
                 a.Petal_3 = false;
                 a.Petal_4 = false;
                 a.Petal_5 = true;
                 break;
-            case (!a.Petal_1 && !a.Petal_2 && !a.Petal_3 && !a.Petal_4 && a.Petal_5):
-                a.Petal_1 = false;
+            case (!a.Petal_2 && !a.Petal_1 && !a.Petal_3 && !a.Petal_4 && a.Petal_5):
                 a.Petal_2 = false;
+                a.Petal_1 = false;
                 a.Petal_3 = false;
                 a.Petal_4 = false;
                 a.Petal_5 = false;
                 break;
             default:
-                a.Petal_1 = true;
                 a.Petal_2 = true;
+                a.Petal_1 = true;
                 a.Petal_3 = true;
                 a.Petal_4 = true;
                 a.Petal_5 = true;
@@ -138,8 +138,8 @@ foolishApp.controller('AboutCtrl', function ($scope, $timeout, $log) {
     var restart = function () {
         $timeout.cancel(timeout);
         timeout = null;
-        self.Petal_1 = true;
         self.Petal_2 = true;
+        self.Petal_1 = true;
         self.Petal_3 = true;
         self.Petal_4 = true;
         self.Petal_5 = true;
