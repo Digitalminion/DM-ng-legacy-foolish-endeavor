@@ -1,4 +1,4 @@
-var foolishApp = angular.module('foolishApp', ['ngRoute', 'ngAnimate']);
+var foolishApp = angular.module('foolishApp', ['ngRoute', 'ngAnimate', 'ngMaterial', 'ngAria']);
 foolishApp.config(function ($routeProvider) {
     $routeProvider.when("/", {
         templateUrl: "assets/tpl/home.html"
