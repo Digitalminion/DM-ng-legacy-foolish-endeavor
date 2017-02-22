@@ -30,7 +30,15 @@ nav{
     clear: both;
 }
 
-md-nav-bar .md-nav-bar {
+
+md-nav-bar md-nav-bar {
     background: #66313f;
     color: #ffffff;
 }
+
+
+/*
+md-nav-bar md-nav-ink-bar {
+    background: green;
+}
+*/
