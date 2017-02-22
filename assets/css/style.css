@@ -29,3 +29,8 @@ nav{
 .footer{
     clear: both;
 }
+
+md-nav-bar .md-nav-bar {
+    background: #66313f;
+    color: #ffffff;
+}
