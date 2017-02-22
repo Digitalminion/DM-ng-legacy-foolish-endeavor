@@ -10,6 +10,14 @@ foolishApp.config(function ($routeProvider) {
         , controllerAs: "about"
     });
 });
+foolishApp.config(function($mdThemingProvider) {
+    $mdThemingProvider.theme('default')
+        .primaryPalette('lime')
+        .warnPalette('red')
+        .accentPalette('blue')
+        .dark();
+});
+
 foolishApp.run(function ($rootScope, $timeout, $log) {});
 foolishApp.controller('ArtboardCtrl', function ($scope, $log, $timeout) {
     var self = this;
@@ -78,6 +86,8 @@ foolishApp.controller('ArtboardCtrl', function ($scope, $log, $timeout) {
         $timeout.cancel(timeout);
         //timeout = null;
     }
+    
+    $scope.currentNavItem="Home";
 });
 foolishApp.controller('AboutCtrl', function ($scope, $timeout, $log) {
     var self = this;
