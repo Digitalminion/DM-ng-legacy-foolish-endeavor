@@ -77,11 +77,11 @@ foolishApp.controller('ArtboardCtrl', function ( $log, $timeout) {
     // !! Because Javascript treates variables as globals for the local function and all child functions 
     // !! self can be access from within the public methods of our class
     // !!
-    // !! Fix # 2: is "this.__init__ = function()"
+    // !! Fix # 2: is "this.init = function()"
     // !! Because they aren't Classes Javascript functions lack a controller to kick off functions once instantiated.
     // !! I will explain more why this is an important practice in Fix 3. But for now know that the nice thing about 
-    // !! Javascript is that we can simply declare a controller. There is no magic to the name __init__ in JavaScript
-    // !! we could just as easily call it "magicStartFunction" but I like python so for our practice "__init__"
+    // !! Javascript is that we can simply declare a controller. There is no magic to the name init in JavaScript
+    // !! we could just as easily call it "magicStartFunction" but I like python so for our practice "init"
     // !!
     // !! Fix # 3: is "return this.__init__();"
     // !! I highly recomend using a constructor for any classes built in Angular. This helps protect from
@@ -96,27 +96,27 @@ foolishApp.controller('ArtboardCtrl', function ( $log, $timeout) {
     var self = this;
     
     // the variable "timeout" is a constant so that it can be accessed in the static function 
-    var timeout;
-    
-    this.pilot;
-    this.mercury;
-    this.apollo;
-    this.mars;
-    this.currentNavItem;
+    self.timeout;
+    self.pilot;
+    self.mercury;
+    self.apollo;
+    self.mars;
+    self.currentNavItem;
     
     //init is the constructor setting the base state on load
     // !! Object Oriented - Fix #2:
-    this.__init__ = function(){
+    self.init = function(){
         self.currentNavItem="Home";
         // Bootstrap the SVG the first time we load it.
         self.restart(); 
         // This function sets the variables to a known state.
         // This is the initial configuration for these variables.
         // When the reset is done, we schedule the timer (step())
-    }
-    this.restart = function () {
+    };
+    // !! I think it would make more sense if this function got renamed "start"
+    self.restart = function () {
         // If there is currently a timeout pending, cancel it.
-        $timeout.cancel(timeout);
+        $timeout.cancel(self.timeout);
         //timeout = null;
         // Sync the SVG to our internal state
         self.pilot = false;
@@ -124,68 +124,61 @@ foolishApp.controller('ArtboardCtrl', function ( $log, $timeout) {
         self.apollo = true;
         self.mars = true;
         // Start the stepping process
-        step(self)
+        self.step()
     };
     // This is an ng-click callback from an SVG, we reset the state.
-    this.reloadRoute = function () {
+    self.reloadRoute = function () {
         $log.log("Starting from the Begining");
         self.restart();
-    }
-    this.startHover = function () {
-        $timeout.cancel(timeout);
-        step(self);
-    }
-    this.stopHover = function () {
-        $timeout.cancel(timeout);
+    };
+    self.startHover = function () {
+        $timeout.cancel(self.timeout);
+        self.step();
+    };
+    self.stopHover = function () {
+        $timeout.cancel(self.timeout);
         //timeout = null;
-    }
-    
+    };
     // You change this to change the "current" highlighted nav item.
     // I haven't tested whether you can change it above and have it show up.
-
-    
-    // !! I actually think the following function can probably be switched to "this" instead of var
-    // !! as welll as the "var timeout;" above. I decided not to try to fix this and instead propose 
-    // !! a scenario where this usage is acceptable. 
-    // function "step" is a static function
-    var step = function (s) {
-        timeout = $timeout(function () {
-            if (s.pilot == false) {
-                s.pilot = true;
-                s.mercury = false;
-                s.apollo = true;
-                s.mars = true;
-                s.currentNavItem="About";
+    self.step = function () {
+        self.timeout = $timeout(function () {
+            if (self.pilot == false) {
+                self.pilot = true;
+                self.mercury = false;
+                self.apollo = true;
+                self.mars = true;
+                self.currentNavItem="About";
             }
-            else if (s.mercury == false) {
-                s.pilot = true;
-                s.mercury = true;
-                s.apollo = false;
-                s.mars = true;
-                s.currentNavItem="Portfolio";
+            else if (self.mercury == false) {
+                self.pilot = true;
+                self.mercury = true;
+                self.apollo = false;
+                self.mars = true;
+                self.currentNavItem="Portfolio";
             }
-            else if (s.apollo == false) {
-                s.pilot = true;
-                s.mercury = true;
-                s.apollo = true;
-                s.mars = false;
-                s.currentNavItem="Contact";
+            else if (self.apollo == false) {
+                self.pilot = true;
+                self.mercury = true;
+                self.apollo = true;
+                self.mars = false;
+                self.currentNavItem="Contact";
             }
             else {
-                s.pilot = false;
-                s.mercury = true;
-                s.apollo = true;
-                s.mars = true;
-                s.currentNavItem="Home";
+                self.pilot = false;
+                self.mercury = true;
+                self.apollo = true;
+                self.mars = true;
+                self.currentNavItem="Home";
             }
             // Finally, call ourselves again to schedule another step
-            step(s)
+            self.step()
         }, 1000)
     };
     
     //kicks off things once all the code is loaded
     // !! Object Oriented - Fix #3:
-    return this.__init__();
+    return self.init();
 });
 foolishApp.controller('AboutCtrl', function ($scope, $timeout, $log) {
     var self = this;
