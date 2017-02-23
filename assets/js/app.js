@@ -83,7 +83,7 @@ foolishApp.controller('ArtboardCtrl', function ( $log, $timeout) {
     // !! Javascript is that we can simply declare a controller. There is no magic to the name __init__ in JavaScript
     // !! we could just as easily call it "magicStartFunction" but I like python so for our practice "__init__"
     // !!
-    // !! Fix # 3: is "this.__init__();"
+    // !! Fix # 3: is "return this.__init__();"
     // !! I highly recomend using a constructor for any classes built in Angular. This helps protect from
     // !! issues such as accidental repeat code execution on page load or state changes. Though it isn't relevant
     // !! to the current process it also makes the code significantly more testable. 
@@ -185,7 +185,7 @@ foolishApp.controller('ArtboardCtrl', function ( $log, $timeout) {
     
     //kicks off things once all the code is loaded
     // !! Object Oriented - Fix #3:
-    this.__init__();
+    return this.__init__();
 });
 foolishApp.controller('AboutCtrl', function ($scope, $timeout, $log) {
     var self = this;
