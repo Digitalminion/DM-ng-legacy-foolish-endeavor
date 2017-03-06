@@ -1,17 +1,52 @@
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="./bower_components/angular-material/angular-material.min.css">
 </head>
 <body ng-app="foolishApp">
-	
-	Welcome to a foolish endeavor
-	
+    <div class="header">
+<!--
+            <nav>
+                <font face="SnellRoundhand">
+                <a href="#!/">Home</a>
+                <img src="assets/img/logo.svg" id="logo">
+                <a href='#!/about'>About</a>
+                </font>
+            </nav>
+-->
+        
+        
+<!--
+    </div>	
+	<div class="content container">
+    Welcome to a foolish endeavor
+    </div>
+    
+    <div class="content" id="post">
+    Look at this stuff.
+    </div>
+-->
+    
     <ng-view></ng-view>
     
+
+    
+    <div class="footer">
+       {{pageMessage}}
+    </div>
+    
     <div id="JavaScript">
-        <script src="./bower_components/angular/angular.min.js" type="text/javascript"></script>
+        <script src="./bower_components/angular/angular.min.js" type="text/javascript"></script>        
         <script src="./bower_components/angular-route/angular-route.min.js" type="text/javascript"></script>
         <script src="./bower_components/angular-animate/angular-animate.min.js" type="text/javascript"></script>
+        <script src="./bower_components/angular-aria/angular-aria.js" type="text/javascript"></script>
+        <script src="./bower_components/angular-material/angular-material.min.js" type="text/javascript"></script>
+        <script src="./bower_components/angular-messages/angular-messages.min.js" type="text/javascript"></script>
+        
         <script src="./assets/js/app.js" type="text/javascript"></script>
+        
     </div>
+    
+
 </body>
 </html>

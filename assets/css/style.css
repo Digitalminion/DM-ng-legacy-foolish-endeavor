@@ -1,0 +1,44 @@
+/**{border-style: solid;}*/
+
+body{
+    background: #EDEEF0;
+}
+
+#logo{
+    width:50%;
+}
+
+nav{
+    width:50%;
+    margin: 0 auto 50px auto;
+    padding: 15px;
+}
+.content-left{ 
+    width:75%;
+    float: left;
+    margin: 10px;
+}
+
+
+.content-right{
+    width:75%;
+    float: right;
+    margin: 10px;
+}
+
+.footer{
+    clear: both;
+}
+
+
+md-nav-bar md-nav-bar {
+    background: #66313f;
+    color: #ffffff;
+}
+
+
+/*
+md-nav-bar md-nav-ink-bar {
+    background: green;
+}
+*/
