@@ -108,13 +108,13 @@ foolishApp.controller('ArtboardCtrl', function ( $log, $timeout) {
     self.init = function(){
         self.currentNavItem="Home";
         // Bootstrap the SVG the first time we load it.
-        self.restart(); 
+        self.start(); 
         // This function sets the variables to a known state.
         // This is the initial configuration for these variables.
         // When the reset is done, we schedule the timer (step())
     };
     // !! I think it would make more sense if this function got renamed "start"
-    self.restart = function () {
+    self.start = function () {
         // If there is currently a timeout pending, cancel it.
         $timeout.cancel(self.timeout);
         //timeout = null;
@@ -129,7 +129,7 @@ foolishApp.controller('ArtboardCtrl', function ( $log, $timeout) {
     // This is an ng-click callback from an SVG, we reset the state.
     self.reloadRoute = function () {
         $log.log("Starting from the Begining");
-        self.restart();
+        self.start();
     };
     self.startHover = function () {
         $timeout.cancel(self.timeout);
@@ -148,28 +148,52 @@ foolishApp.controller('ArtboardCtrl', function ( $log, $timeout) {
                 self.mercury = false;
                 self.apollo = true;
                 self.mars = true;
-                self.currentNavItem="About";
+                
+                if (document.getElementsByName("link_2")[0].style.color == "rgb(255, 255, 255)"){
+                    document.getElementsByName("link_2")[0].style.color="#000";
+                } 
+                else {
+                    document.getElementsByName("link_2")[0].style.color="#FFF";
+                }
+
             }
             else if (self.mercury == false) {
                 self.pilot = true;
                 self.mercury = true;
                 self.apollo = false;
-                self.mars = true;
-                self.currentNavItem="Portfolio";
+                self.mars = true
+                
+                if (document.getElementsByName("link_3")[0].style.color == "rgb(255, 255, 255)"){
+                    document.getElementsByName("link_3")[0].style.color="#000";
+                } 
+                else {
+                    document.getElementsByName("link_3")[0].style.color="#FFF";
+                }
             }
             else if (self.apollo == false) {
                 self.pilot = true;
                 self.mercury = true;
                 self.apollo = true;
                 self.mars = false;
-                self.currentNavItem="Contact";
+                if (document.getElementsByName("link_4")[0].style.color == "rgb(255, 255, 255)"){
+                    document.getElementsByName("link_4")[0].style.color="#000";
+                } 
+                else {
+                    document.getElementsByName("link_4")[0].style.color="#FFF";
+                }
+
             }
             else {
                 self.pilot = false;
                 self.mercury = true;
                 self.apollo = true;
                 self.mars = true;
-                self.currentNavItem="Home";
+                if (document.getElementsByName("link_1")[0].style.color == "rgb(255, 255, 255)"){
+                    document.getElementsByName("link_1")[0].style.color="#000";
+                } 
+                else {
+                    document.getElementsByName("link_1")[0].style.color="#FFF";
+                }
             }
             // Finally, call ourselves again to schedule another step
             self.step()
