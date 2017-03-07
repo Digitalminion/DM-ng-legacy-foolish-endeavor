@@ -102,6 +102,7 @@ foolishApp.controller('ArtboardCtrl', function ( $log, $timeout) {
     self.apollo;
     self.mars;
     self.currentNavItem;
+//    document.getElementsByName("link_2")[0].style.text-decoration=underline;
     
     //init is the constructor setting the base state on load
     // !! Object Oriented - Fix #2:
@@ -123,6 +124,8 @@ foolishApp.controller('ArtboardCtrl', function ( $log, $timeout) {
         self.mercury = true;
         self.apollo = true;
         self.mars = true;
+        
+        document.getElementsByName("link_1")[0].style.textDecoration= "underline";
         // Start the stepping process
         self.step()
     };
@@ -142,6 +145,7 @@ foolishApp.controller('ArtboardCtrl', function ( $log, $timeout) {
     // You change this to change the "current" highlighted nav item.
     // I haven't tested whether you can change it above and have it show up.
     self.step = function () {
+        
         self.timeout = $timeout(function () {
             if (self.pilot == false) {
                 self.pilot = true;
@@ -149,11 +153,13 @@ foolishApp.controller('ArtboardCtrl', function ( $log, $timeout) {
                 self.apollo = true;
                 self.mars = true;
                 
+                
                 if (document.getElementsByName("link_2")[0].style.color == "rgb(255, 255, 255)"){
                     document.getElementsByName("link_2")[0].style.color="#000";
                 } 
                 else {
                     document.getElementsByName("link_2")[0].style.color="#FFF";
+                    
                 }
 
             }
