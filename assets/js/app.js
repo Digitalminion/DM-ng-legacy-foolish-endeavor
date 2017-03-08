@@ -125,7 +125,7 @@ foolishApp.controller('ArtboardCtrl', function ( $log, $timeout) {
         self.apollo = true;
         self.mars = true;
         
-        document.getElementsByName("link_1")[0].style.textDecoration= "underline";
+        document.getElementsByName("link_Home")[0].style.textDecoration= "underline";
         // Start the stepping process
         self.step()
     };
@@ -154,11 +154,11 @@ foolishApp.controller('ArtboardCtrl', function ( $log, $timeout) {
                 self.mars = true;
                 
                 
-                if (document.getElementsByName("link_2")[0].style.color == "rgb(255, 255, 255)"){
-                    document.getElementsByName("link_2")[0].style.color="#000";
+                if (document.getElementsByName("link_About")[0].style.color == "rgb(255, 255, 255)"){
+                    document.getElementsByName("link_About")[0].style.color="#000";
                 } 
                 else {
-                    document.getElementsByName("link_2")[0].style.color="#FFF";
+                    document.getElementsByName("link_About")[0].style.color="#FFF";
                     
                 }
 
@@ -169,11 +169,11 @@ foolishApp.controller('ArtboardCtrl', function ( $log, $timeout) {
                 self.apollo = false;
                 self.mars = true
                 
-                if (document.getElementsByName("link_3")[0].style.color == "rgb(255, 255, 255)"){
-                    document.getElementsByName("link_3")[0].style.color="#000";
+                if (document.getElementsByName("link_Portfolio")[0].style.color == "rgb(255, 255, 255)"){
+                    document.getElementsByName("link_Portfolio")[0].style.color="#000";
                 } 
                 else {
-                    document.getElementsByName("link_3")[0].style.color="#FFF";
+                    document.getElementsByName("link_Portfolio")[0].style.color="#FFF";
                 }
             }
             else if (self.apollo == false) {
@@ -181,11 +181,14 @@ foolishApp.controller('ArtboardCtrl', function ( $log, $timeout) {
                 self.mercury = true;
                 self.apollo = true;
                 self.mars = false;
-                if (document.getElementsByName("link_4")[0].style.color == "rgb(255, 255, 255)"){
-                    document.getElementsByName("link_4")[0].style.color="#000";
+                if (document.getElementsByName("link_Contact")[0].style.color == "rgb(255, 255, 255)"){
+                    document.getElementsByName("link_Contact")[0].style.color="#000";
+                if (document.getElementsByName("link_Contact")[0].style.color == "rgb(255, 255, 255)"){
+                    document.getElementsByName("link_Contact")[0].style.color="#000";
                 } 
                 else {
-                    document.getElementsByName("link_4")[0].style.color="#FFF";
+                    document.getElementsByName("link_Contact")[0].style.color="#FFF";
+                    document.getElementsByName("link_Contact")[0].style.color="#FFF";
                 }
 
             }
@@ -194,11 +197,11 @@ foolishApp.controller('ArtboardCtrl', function ( $log, $timeout) {
                 self.mercury = true;
                 self.apollo = true;
                 self.mars = true;
-                if (document.getElementsByName("link_1")[0].style.color == "rgb(255, 255, 255)"){
-                    document.getElementsByName("link_1")[0].style.color="#000";
+                if (document.getElementsByName("link_Home")[0].style.color == "rgb(255, 255, 255)"){
+                    document.getElementsByName("link_Home")[0].style.color="#000";
                 } 
                 else {
-                    document.getElementsByName("link_1")[0].style.color="#FFF";
+                    document.getElementsByName("link_Home")[0].style.color="#FFF";
                 }
             }
             // Finally, call ourselves again to schedule another step
