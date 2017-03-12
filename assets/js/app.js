@@ -47,7 +47,43 @@ foolishApp.config(function($mdThemingProvider) {
 //
 
 
-foolishApp.run(function ($rootScope, $timeout, $log) {});
+foolishApp.run(function ($rootScope, $timeout, $log) {
+     var hide = true;
+    $rootScope.pageMessage =" Sometimes art happens. For such occassions, we have this space to contain it all"
+    var timer;
+    $rootScope.pass=1;
+    var countUp = function(message, bool) {
+        $log.log(message + ' - ' + bool)
+        if(bool == 1){
+            message = 'even';
+            bool+= 1;
+        }
+        else{
+            message = 'odd';
+            bool-= 1;
+        }
+        $rootScope.pass+=1;
+        if($rootScope.pass < 10){
+            $timeout(function(){countUp(message, bool)}, 1000);
+        }
+    }
+    var passOne = 'First pass'
+    $timeout(countUp(passOne, $rootScope.pass), 1000);
+    var changeMessage = function(bool) {
+       if (bool == 1) {
+           bool += 1
+           $rootScope.pageMessage = " Sometimes art happens. For such occassions, we have this space to contain it all"
+       }
+       else {
+           bool -= 1
+           $rootScope.pageMessage = "This message is changing"
+       }
+       $timeout(function(){changeMessage(bool)}, 10000)
+   }
+   changeMessage(1)
+
+
+});
 foolishApp.controller('ArtboardCtrl', function ( $log, $timeout) {
     // !! BEGIN AUSTIN COMMENT BLOCK
     // !!
@@ -102,6 +138,7 @@ foolishApp.controller('ArtboardCtrl', function ( $log, $timeout) {
     self.apollo;
     self.mars;
     self.currentNavItem;
+    
     
     //init is the constructor setting the base state on load
     // !! Object Oriented - Fix #2:
