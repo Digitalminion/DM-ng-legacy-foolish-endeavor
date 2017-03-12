@@ -109,7 +109,7 @@ foolishApp.controller('ArtboardCtrl', function ( $log, $timeout) {
     self.init = function(){
         self.currentNavItem="Home";
         // Bootstrap the SVG the first time we load it.
-        self.start(); 
+//        self.start(); 
         // This function sets the variables to a known state.
         // This is the initial configuration for these variables.
         // When the reset is done, we schedule the timer (step())
@@ -118,7 +118,7 @@ foolishApp.controller('ArtboardCtrl', function ( $log, $timeout) {
     self.start = function () {
         // If there is currently a timeout pending, cancel it.
         $timeout.cancel(self.timeout);
-        //timeout = null;
+        timeout = null;
         // Sync the SVG to our internal state
         self.pilot = false;
         self.mercury = true;
@@ -137,6 +137,7 @@ foolishApp.controller('ArtboardCtrl', function ( $log, $timeout) {
         self.start();
     };
     self.startHover = function () {
+        self.start(); 
         $timeout.cancel(self.timeout);
         self.step();
     };
