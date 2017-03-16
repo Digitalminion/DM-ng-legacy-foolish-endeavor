@@ -111,15 +111,16 @@ self.start= function(){
     self.apollo = true;
     self.mars = true;
     document.getElementsByName("link_Home")[0].style.textDecoration = "underline";
-    document.getElementsByName("link_Home")[0].style.color = "rgb(255, 255, 255)";
-    document.getElementsByName("link_About")[0].style.color = "rgb(255, 255, 255)";
-    document.getElementsByName("link_Portfolio")[0].style.color = "rgb(255, 255, 255)";
-    document.getElementsByName("link_Contact")[0].style.color = "rgb(255, 255, 255)";
-    
-    self.step();
+    document.getElementsByName("link_Home")[0].style.color = "#000";
+    document.getElementsByName("link_About")[0].style.color = "#000";
+    document.getElementsByName("link_Portfolio")[0].style.color = "#000";
+    document.getElementsByName("link_Contact")[0].style.color = "#000";
+
 }
     
 self.startHover = function() {
+    self.start();
+    $timeout.cancel(self.timeout);
     self.step();
 } 
 
@@ -129,8 +130,8 @@ self.stopHover = function() {
 
 self.reloadRoute = function() {
     self.start();
-    $timeout.cancel(self.timeout);
-    self.step();
+//    $timeout.cancel(self.timeout);
+//    self.step();
 }
 
 self.step= function(){
@@ -144,9 +145,9 @@ self.step= function(){
         self.apollo= true;
         self.mars= true;
         document.getElementsByName("link_Home")[0].style.color= "#FFF";
-        document.getElementsByName("link_About")[0].style.color="rgb(255, 255, 255)";
-        document.getElementsByName("link_Portfolio")[0].style.color="rgb(255, 255, 255)";
-        document.getElementsByName("link_Contact")[0].style.color="rgb(255, 255, 255)";
+        document.getElementsByName("link_About")[0].style.color="#000";
+        document.getElementsByName("link_Portfolio")[0].style.color="#000";
+        document.getElementsByName("link_Contact")[0].style.color="#000";
     }
     //set state1 to state2
     else if(self.pilot==false){
@@ -156,8 +157,8 @@ self.step= function(){
         self.mars= true;
         document.getElementsByName("link_Home")[0].style.color= "#FFF";
         document.getElementsByName("link_About")[0].style.color="#FFF";
-        document.getElementsByName("link_Portfolio")[0].style.color="rgb(255, 255, 255)";
-        document.getElementsByName("link_Contact")[0].style.color="rgb(255, 255, 255)";
+        document.getElementsByName("link_Portfolio")[0].style.color="#000";
+        document.getElementsByName("link_Contact")[0].style.color="#000";
     }
     //set state2 to state3
     else if(self.mercury==false){
@@ -168,7 +169,7 @@ self.step= function(){
         document.getElementsByName("link_Home")[0].style.color= "#FFF";
         document.getElementsByName("link_About")[0].style.color="#FFF";
         document.getElementsByName("link_Portfolio")[0].style.color="#FFF";
-        document.getElementsByName("link_Contact")[0].style.color="rgb(255, 255, 255)";
+        document.getElementsByName("link_Contact")[0].style.color="#000";
     } 
     //set state3 to state4
     else if(self.apollo==false){
@@ -183,10 +184,15 @@ self.step= function(){
     }
     //set state4 to state0
     else if(self.mars==false){
-        self.pilot= true;
-        self.mercury= true;
-        self.apollo= true;
-        self.mars= true;
+        self.pilot = true;
+        self.mercury = true;
+        self.apollo = true;
+        self.mars = true;
+        document.getElementsByName("link_Home")[0].style.textDecoration = "underline";
+        document.getElementsByName("link_Home")[0].style.color = "#000";
+        document.getElementsByName("link_About")[0].style.color = "#000";
+        document.getElementsByName("link_Portfolio")[0].style.color = "#000";
+        document.getElementsByName("link_Contact")[0].style.color = "#000";
     }
     //oops
     else{
@@ -194,7 +200,7 @@ self.step= function(){
     }
     self.step();    
 }, 1000);}
-
+self.start();
 });
 foolishApp.controller('AboutCtrl', function ($scope, $timeout, $log) {
     var self = this;
