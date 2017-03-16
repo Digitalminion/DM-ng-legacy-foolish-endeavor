@@ -99,8 +99,13 @@ var self = this;
     self.mercury;
     self.apollo;
     self.mars;
-    
+
 self.init= function(){
+    self.start;
+}
+self.start= function(){
+    $timeout.cancel(self.timeout);
+    timeout = null;
     self.pilot = true;
     self.mercury = true;
     self.apollo = true;
@@ -123,14 +128,14 @@ self.stopHover = function() {
 }
 
 self.reloadRoute = function() {
-    self.init();
+    self.start();
     $timeout.cancel(self.timeout);
     self.step();
 }
 
 self.step= function(){
     
-    self.timeout=$timeout(function(){
+    self.timeout= $timeout(function(){
     
     //set state0 to state1
     if(self.pilot== true && self.mercury== true && self.apollo== true && self.mars== true){
@@ -145,7 +150,7 @@ self.step= function(){
     }
     //set state1 to state2
     else if(self.pilot==false){
-        self.pilot= false;
+        self.pilot= true;
         self.mercury= false;
         self.apollo= true;
         self.mars= true;
@@ -156,8 +161,8 @@ self.step= function(){
     }
     //set state2 to state3
     else if(self.mercury==false){
-        self.pilot= false;
-        self.mercury= false;
+        self.pilot= true;
+        self.mercury= true;
         self.apollo= false;
         self.mars= true;
         document.getElementsByName("link_Home")[0].style.color= "#FFF";
@@ -167,9 +172,9 @@ self.step= function(){
     } 
     //set state3 to state4
     else if(self.apollo==false){
-        self.pilot= false;
-        self.mercury= false;
-        self.apollo= false;
+        self.pilot= true;
+        self.mercury= true;
+        self.apollo= true;
         self.mars= false;
         document.getElementsByName("link_Home")[0].style.color= "#FFF";
         document.getElementsByName("link_About")[0].style.color="#FFF";
