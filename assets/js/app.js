@@ -119,7 +119,8 @@ self.start= function(){
 }
     
 self.startHover = function() {
-    self.start();
+    if(self.pilot== true && self.mercury== true && self.apollo== true && self.mars== true){
+    self.start();}
     $timeout.cancel(self.timeout);
     self.step();
 } 
