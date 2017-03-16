@@ -1,13 +1,13 @@
 var foolishApp = angular.module('foolishApp', ['ngRoute', 'ngMessages', 'ngAnimate', 'ngMaterial', 'ngAria']);
 foolishApp.config(function ($routeProvider) {
     $routeProvider.when("/", {
-        templateUrl: "assets/tpl/home.html"
-        , controller: "ArtboardCtrl"
-        , controllerAs: "artboard"
+        templateUrl: "assets/tpl/home.html", 
+        controller: "ArtboardCtrl",
+        controllerAs: "artboard"
     }).when("/about", {
-        templateUrl: "assets/tpl/about.html"
-        , controller: "AboutCtrl"
-        , controllerAs: "about"
+        templateUrl: "assets/tpl/about.html",
+        controller: "AboutCtrl",
+        controllerAs: "about"
     });
 });
 
@@ -22,16 +22,16 @@ foolishApp.config(function ($routeProvider) {
 // that Material gives you.  You may want to remove that CSS in the html, and uncomment
 // this, if you want to play around with it.
 //
-foolishApp.config(function($mdThemingProvider) {
-    $mdThemingProvider
-        .theme('docs-dark', 'default')  // Create a theme "docs-dark" copied from "default"
-        .primaryPalette('cyan')         // (Not sure yet)
-        .warnPalette('green')           // (Not sure yet)
-        .accentPalette('grey')          // These are the colors of the text
-        .backgroundPalette('red')       // These are the colors of the underline, and "highlighted".
-        //.dark()      // This inverts the colors, in a weird way
-        ;
-});
+//foolishApp.config(function ($mdThemingProvider) {
+//    $mdThemingProvider
+//        .theme('docs-dark', 'default')  // Create a theme "docs-dark" copied from "default"
+//        .primaryPalette('cyan')         // (Not sure yet)
+//        .warnPalette('green')           // (Not sure yet)
+//        .accentPalette('grey')          // These are the colors of the text
+//        .backgroundPalette('red')       // These are the colors of the underline, and "highlighted".
+//        //.dark()      // This inverts the colors, in a weird way
+//        ;
+//});
 
 //
 // For more informatino about how to define a pallette (ie, with your own colors),
@@ -47,8 +47,8 @@ foolishApp.config(function($mdThemingProvider) {
 //
 
 
-foolishApp.run(function ($rootScope, $timeout, $log) {});
-foolishApp.controller('ArtboardCtrl', function ( $log, $timeout) {
+//foolishApp.run(function ($rootScope, $timeout, $log) {});
+foolishApp.controller('ArtboardCtrl', function ($log, $timeout) {
     // !! BEGIN AUSTIN COMMENT BLOCK
     // !!
     // !! The goal of Angular 2 in typescript 1.6 in JavaScript is to make Angular more Object Oriented
@@ -91,127 +91,105 @@ foolishApp.controller('ArtboardCtrl', function ( $log, $timeout) {
     // !! In conclusion, 
     // !!
     // !! END AUSTIN COMMENT BLOCK
-    
-    // !! Object Oriented - Fix #1:
-    var self = this;
-    
-    // the variable "timeout" is a constant so that it can be accessed in the static function 
+
+var self = this;    
+
     self.timeout;
     self.pilot;
     self.mercury;
     self.apollo;
     self.mars;
-    self.currentNavItem;
-//    document.getElementsByName("link_2")[0].style.text-decoration=underline;
     
-    //init is the constructor setting the base state on load
-    // !! Object Oriented - Fix #2:
-    self.init = function(){
-        self.currentNavItem="Home";
-        // Bootstrap the SVG the first time we load it.
-//        self.start(); 
-        // This function sets the variables to a known state.
-        // This is the initial configuration for these variables.
-        // When the reset is done, we schedule the timer (step())
-    };
-    // !! I think it would make more sense if this function got renamed "start"
-    self.start = function () {
-        // If there is currently a timeout pending, cancel it.
-        $timeout.cancel(self.timeout);
-        timeout = null;
-        // Sync the SVG to our internal state
-        self.pilot = false;
-        self.mercury = true;
-        self.apollo = true;
-        self.mars = true;
-        
-        document.getElementsByName("link_Home")[0].style.textDecoration= "underline";
-        document.getElementsByName("link_Home")[0].style.color="#FFF";
-        
-        // Start the stepping process
-        self.step()
-    };
-    // This is an ng-click callback from an SVG, we reset the state.
-    self.reloadRoute = function () {
-        $log.log("Starting from the Begining");
-        self.start();
-    };
-    self.startHover = function () {
-        self.start(); 
-        $timeout.cancel(self.timeout);
-        self.step();
-    };
-    self.stopHover = function () {
-        $timeout.cancel(self.timeout);
-        //timeout = null;
-    };
-    // You change this to change the "current" highlighted nav item.
-    // I haven't tested whether you can change it above and have it show up.
-    self.step = function () {
-        
-        self.timeout = $timeout(function () {
-            if (self.pilot == false) {
-                self.pilot = true;
-                self.mercury = false;
-                self.apollo = true;
-                self.mars = true;
-                
-                
-                if (document.getElementsByName("link_About")[0].style.color == "rgb(255, 255, 255)"){
-                    document.getElementsByName("link_About")[0].style.color="#000";
-                } 
-                else {
-                    document.getElementsByName("link_About")[0].style.color="#FFF";
-                    
-                }
-
-            }
-            else if (self.mercury == false) {
-                self.pilot = true;
-                self.mercury = true;
-                self.apollo = false;
-                self.mars = true
-                
-                if (document.getElementsByName("link_Portfolio")[0].style.color == "rgb(255, 255, 255)"){
-                    document.getElementsByName("link_Portfolio")[0].style.color="#000";
-                } 
-                else {
-                    document.getElementsByName("link_Portfolio")[0].style.color="#FFF";
-                }
-            }
-            else if (self.apollo == false) {
-                self.pilot = true;
-                self.mercury = true;
-                self.apollo = true;
-                self.mars = false;
-                if (document.getElementsByName("link_Contact")[0].style.color == "rgb(255, 255, 255)"){
-                    document.getElementsByName("link_Contact")[0].style.color="#000";
-                } 
-                else {
-                    document.getElementsByName("link_Contact")[0].style.color="#FFF";
-                }
-
-            }
-            else {
-                self.pilot = false;
-                self.mercury = true;
-                self.apollo = true;
-                self.mars = true;
-                if (document.getElementsByName("link_Home")[0].style.color == "rgb(255, 255, 255)"){
-                    document.getElementsByName("link_Home")[0].style.color="#000";
-                } 
-                else {
-                    document.getElementsByName("link_Home")[0].style.color="#FFF";
-                }
-            }
-            // Finally, call ourselves again to schedule another step
-            self.step()
-        }, 1000)
-    };
+self.init= function(){
+    self.pilot = true;
+    self.mercury = true;
+    self.apollo = true;
+    self.mars = true;
+    document.getElementsByName("link_Home")[0].style.textDecoration = "underline";
+    document.getElementsByName("link_Home")[0].style.color = "rgb(255, 255, 255)";
+    document.getElementsByName("link_About")[0].style.color = "rgb(255, 255, 255)";
+    document.getElementsByName("link_Portfolio")[0].style.color = "rgb(255, 255, 255)";
+    document.getElementsByName("link_Contact")[0].style.color = "rgb(255, 255, 255)";
     
-    //kicks off things once all the code is loaded
-    // !! Object Oriented - Fix #3:
-    return self.init();
+    self.step();
+}
+    
+self.startHover = function() {
+    self.step();
+} 
+
+self.stopHover = function() {
+    $timeout.cancel(self.timeout);
+}
+
+self.reloadRoute = function() {
+    self.init();
+    $timeout.cancel(self.timeout);
+    self.step();
+}
+
+self.step= function(){
+    
+    self.timeout=$timeout(function(){
+    
+    //set state0 to state1
+    if(self.pilot== true && self.mercury== true && self.apollo== true && self.mars== true){
+        self.pilot= false;
+        self.mercury= true;
+        self.apollo= true;
+        self.mars= true;
+        document.getElementsByName("link_Home")[0].style.color= "#FFF";
+        document.getElementsByName("link_About")[0].style.color="rgb(255, 255, 255)";
+        document.getElementsByName("link_Portfolio")[0].style.color="rgb(255, 255, 255)";
+        document.getElementsByName("link_Contact")[0].style.color="rgb(255, 255, 255)";
+    }
+    //set state1 to state2
+    else if(self.pilot==false){
+        self.pilot= false;
+        self.mercury= false;
+        self.apollo= true;
+        self.mars= true;
+        document.getElementsByName("link_Home")[0].style.color= "#FFF";
+        document.getElementsByName("link_About")[0].style.color="#FFF";
+        document.getElementsByName("link_Portfolio")[0].style.color="rgb(255, 255, 255)";
+        document.getElementsByName("link_Contact")[0].style.color="rgb(255, 255, 255)";
+    }
+    //set state2 to state3
+    else if(self.mercury==false){
+        self.pilot= false;
+        self.mercury= false;
+        self.apollo= false;
+        self.mars= true;
+        document.getElementsByName("link_Home")[0].style.color= "#FFF";
+        document.getElementsByName("link_About")[0].style.color="#FFF";
+        document.getElementsByName("link_Portfolio")[0].style.color="#FFF";
+        document.getElementsByName("link_Contact")[0].style.color="rgb(255, 255, 255)";
+    } 
+    //set state3 to state4
+    else if(self.apollo==false){
+        self.pilot= false;
+        self.mercury= false;
+        self.apollo= false;
+        self.mars= false;
+        document.getElementsByName("link_Home")[0].style.color= "#FFF";
+        document.getElementsByName("link_About")[0].style.color="#FFF";
+        document.getElementsByName("link_Portfolio")[0].style.color="#FFF";
+        document.getElementsByName("link_Contact")[0].style.color="#FFF";
+    }
+    //set state4 to state0
+    else if(self.mars==false){
+        self.pilot= true;
+        self.mercury= true;
+        self.apollo= true;
+        self.mars= true;
+    }
+    //oops
+    else{
+        $log.log("oops");
+    }
+    self.step();    
+}, 1000);}
+
 });
 foolishApp.controller('AboutCtrl', function ($scope, $timeout, $log) {
     var self = this;
