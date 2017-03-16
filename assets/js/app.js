@@ -131,8 +131,7 @@ self.stopHover = function() {
 
 self.reloadRoute = function() {
     self.start();
-//    $timeout.cancel(self.timeout);
-//    self.step();
+    self.step();
 }
 
 self.step= function(){
