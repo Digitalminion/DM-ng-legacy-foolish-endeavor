@@ -119,7 +119,7 @@ self.start= function(){
 }
     
 self.startHover = function() {
-    if(self.pilot && self.mercury && self.apollo && self.mars){
+    if(self.pilot== true && self.mercury== true && self.apollo== true && self.mars== true){
     self.start();}
     $timeout.cancel(self.timeout);
     self.step();
@@ -139,15 +139,18 @@ self.step= function(){
     self.timeout= $timeout(function(){
     
     //set state0 to state1
-    if(self.pilot && self.mercury  && self.apollo  && self.mars){
+    if(self.pilot== true && self.mercury== true && self.apollo== true && self.mars== true){
         self.pilot= false;
+        self.mercury= true;
+        self.apollo= true;
+        self.mars= true;
         document.getElementsByName("link_Home")[0].style.color= "#FFF";
         document.getElementsByName("link_About")[0].style.color="#000";
         document.getElementsByName("link_Portfolio")[0].style.color="#000";
         document.getElementsByName("link_Contact")[0].style.color="#000";
     }
     //set state1 to state2
-    else if(!self.pilot){
+    else if(self.pilot==false){
         self.pilot= true;
         self.mercury= false;
         self.apollo= true;
@@ -158,7 +161,8 @@ self.step= function(){
         document.getElementsByName("link_Contact")[0].style.color="#000";
     }
     //set state2 to state3
-    else if(!self.mercury){
+    else if(self.mercury==false){
+        self.pilot= true;
         self.mercury= true;
         self.apollo= false;
         self.mars= true;
@@ -168,7 +172,9 @@ self.step= function(){
         document.getElementsByName("link_Contact")[0].style.color="#000";
     } 
     //set state3 to state4
-    else if(!self.apollo){
+    else if(self.apollo==false){
+        self.pilot= true;
+        self.mercury= true;
         self.apollo= true;
         self.mars= false;
         document.getElementsByName("link_Home")[0].style.color= "#FFF";
@@ -177,7 +183,10 @@ self.step= function(){
         document.getElementsByName("link_Contact")[0].style.color="#FFF";
     }
     //set state4 to state0
-    else if(!self.mars){
+    else if(self.mars==false){
+        self.pilot = true;
+        self.mercury = true;
+        self.apollo = true;
         self.mars = true;
         document.getElementsByName("link_Home")[0].style.textDecoration = "underline";
         document.getElementsByName("link_Home")[0].style.color = "#000";
@@ -193,7 +202,6 @@ self.step= function(){
 }, 1000);}
 self.start();
 });
-
 foolishApp.controller('AboutCtrl', function ($scope, $timeout, $log) {
     var self = this;
     var timeout;
