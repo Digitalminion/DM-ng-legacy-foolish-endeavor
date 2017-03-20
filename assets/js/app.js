@@ -131,12 +131,11 @@ self.stopHover = function() {
 
 self.reloadRoute = function() {
     self.start();
+    self.moveAhead();
     self.step();
 }
 
-self.step= function(){
-    
-    self.timeout= $timeout(function(){
+self.moveAhead = function(){
     
     //set state0 to state1
     if(self.pilot== true && self.mercury== true && self.apollo== true && self.mars== true){
@@ -184,22 +183,30 @@ self.step= function(){
     }
     //set state4 to state0
     else if(self.mars==false){
-        self.pilot = true;
-        self.mercury = true;
-        self.apollo = true;
-        self.mars = true;
-        document.getElementsByName("link_Home")[0].style.textDecoration = "underline";
-        document.getElementsByName("link_Home")[0].style.color = "#000";
-        document.getElementsByName("link_About")[0].style.color = "#000";
-        document.getElementsByName("link_Portfolio")[0].style.color = "#000";
-        document.getElementsByName("link_Contact")[0].style.color = "#000";
+        self.pilot= false;
+        self.mercury= true;
+        self.apollo= true;
+        self.mars= true;
+        document.getElementsByName("link_Home")[0].style.color= "#FFF";
+        document.getElementsByName("link_About")[0].style.color="#000";
+        document.getElementsByName("link_Portfolio")[0].style.color="#000";
+        document.getElementsByName("link_Contact")[0].style.color="#000";
     }
     //oops
     else{
         $log.log("oops");
     }
+    }
+    
+
+self.step= function(){
+    
+    self.timeout= $timeout(function(){
+    self.moveAhead();
     self.step();    
+    
 }, 1000);}
+
 self.start();
 });
 foolishApp.controller('AboutCtrl', function ($scope, $timeout, $log) {
