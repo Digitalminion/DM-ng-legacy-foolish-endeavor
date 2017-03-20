@@ -135,6 +135,19 @@ self.reloadRoute = function() {
     self.step();
 }
 
+self.toggle_text_color = function(label) {
+    console.log(document.getElementsByName(label)[0].style.color)
+    if (document.getElementsByName(label)[0].style.color== "rgb(255, 255, 255)"){
+        document.getElementsByName(label)[0].style.color="#000";
+    }
+    else if (document.getElementsByName(label)[0].style.color== "rgb(0, 0, 0)"){
+        document.getElementsByName(label)[0].style.color="#FFF";
+    }
+    else {
+        document.getElementsByName(label)[0].style.color="#000";
+    }
+}
+
 self.moveAhead = function(){
     
     //set state0 to state1
@@ -143,10 +156,7 @@ self.moveAhead = function(){
         self.mercury= true;
         self.apollo= true;
         self.mars= true;
-        document.getElementsByName("link_Home")[0].style.color= "#FFF";
-        document.getElementsByName("link_About")[0].style.color="#000";
-        document.getElementsByName("link_Portfolio")[0].style.color="#000";
-        document.getElementsByName("link_Contact")[0].style.color="#000";
+        self.toggle_text_color("link_Home");
     }
     //set state1 to state2
     else if(self.pilot==false){
@@ -154,10 +164,7 @@ self.moveAhead = function(){
         self.mercury= false;
         self.apollo= true;
         self.mars= true;
-        document.getElementsByName("link_Home")[0].style.color= "#FFF";
-        document.getElementsByName("link_About")[0].style.color="#FFF";
-        document.getElementsByName("link_Portfolio")[0].style.color="#000";
-        document.getElementsByName("link_Contact")[0].style.color="#000";
+        self.toggle_text_color("link_About");
     }
     //set state2 to state3
     else if(self.mercury==false){
@@ -165,10 +172,7 @@ self.moveAhead = function(){
         self.mercury= true;
         self.apollo= false;
         self.mars= true;
-        document.getElementsByName("link_Home")[0].style.color= "#FFF";
-        document.getElementsByName("link_About")[0].style.color="#FFF";
-        document.getElementsByName("link_Portfolio")[0].style.color="#FFF";
-        document.getElementsByName("link_Contact")[0].style.color="#000";
+        self.toggle_text_color("link_Portfolio");
     } 
     //set state3 to state4
     else if(self.apollo==false){
@@ -176,10 +180,7 @@ self.moveAhead = function(){
         self.mercury= true;
         self.apollo= true;
         self.mars= false;
-        document.getElementsByName("link_Home")[0].style.color= "#FFF";
-        document.getElementsByName("link_About")[0].style.color="#FFF";
-        document.getElementsByName("link_Portfolio")[0].style.color="#FFF";
-        document.getElementsByName("link_Contact")[0].style.color="#FFF";
+        self.toggle_text_color("link_Contact");
     }
     //set state4 to state0
     else if(self.mars==false){
@@ -187,10 +188,7 @@ self.moveAhead = function(){
         self.mercury= true;
         self.apollo= true;
         self.mars= true;
-        document.getElementsByName("link_Home")[0].style.color= "#FFF";
-        document.getElementsByName("link_About")[0].style.color="#000";
-        document.getElementsByName("link_Portfolio")[0].style.color="#000";
-        document.getElementsByName("link_Contact")[0].style.color="#000";
+        self.toggle_text_color("link_Home");
     }
     //oops
     else{
