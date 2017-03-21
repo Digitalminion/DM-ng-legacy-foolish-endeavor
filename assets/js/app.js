@@ -49,34 +49,38 @@ foolishApp.config(function($mdThemingProvider) {
 
 foolishApp.run(function ($rootScope, $timeout, $log) {
     var self = this;
-    $rootScope.pageMessage ="This is the first message"
+    $rootScope.pageMessage =""
     var timer;
     $rootScope.pass=1;
     
     self.init= function(){
         self.message1="This is the first message";
-        self.message2="This is message #2!";
-        self.timeout();    
+        self.message2="This is message #2!";   
     }
+    
+    self.init();
     
     self.toggle_message= function(){
-        if ($rootScope.pageMessage== message1){
-        $rootScope.pageMessage = message2;
+        console.log("TOGGLE")
+        if ($rootScope.pageMessage== self.message1){
+        $rootScope.pageMessage = self.message2;
         }
-        else if ($rootScope.pageMessage == message2){
-        $rootScope.pageMessage = message1;
+        else if ($rootScope.pageMessage == self.message2){
+        $rootScope.pageMessage = self.message1;
         }
-        else {$rootScope.pageMessage= message1;} 
+        else {$rootScope.pageMessage= self.message1;} 
+        
+        self.timeout_message();
 
-        self.toggle_message();
     }
     
-    self.timeout= $timeout(function(){
+    self.timeout_message = function (){
+        $timeout(function(){
         self.toggle_message();
         }, 1000)
-       
-     
-   
+        }
+    
+    self.timeout_message();
 //    
 //    self.toggle_message();
     
