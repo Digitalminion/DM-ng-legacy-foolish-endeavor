@@ -53,26 +53,35 @@ foolishApp.run(function ($rootScope, $timeout, $log) {
     var timer;
     $rootScope.pass=1;
     
+    self.init= function(){
+        self.message1="This is the first message";
+        self.message2="This is message #2!";
+        self.timeout();    
+    }
+    
     self.toggle_message= function(){
-       self.timeout= $timeout(function(){
-            
-            if ($rootScope.pageMessage=="This is the first message"){
-            $rootScope.pageMessage = "This is message #2!";
-            }
-            else if ($rootScope.pageMessage == "This is message #2!"){
-                $rootScope.pageMessage = "This is the first message";
-            }
-            else {$rootScope.pageMessage="This is the first message";} 
-           
-           self.toggle_message();
+        if ($rootScope.pageMessage== message1){
+        $rootScope.pageMessage = message2;
+        }
+        else if ($rootScope.pageMessage == message2){
+        $rootScope.pageMessage = message1;
+        }
+        else {$rootScope.pageMessage= message1;} 
+
+        self.toggle_message();
+    }
+    
+    self.timeout= $timeout(function(){
+        self.toggle_message();
         }, 1000)
        
      
-    };
-    
-    self.toggle_message();
+   
+//    
+//    self.toggle_message();
     
     $log.log("this is working")
+     })
 //    var countUp = function(message, bool) {
 //        $log.log(message + ' - ' + bool)
 //        if(bool == 1){
@@ -103,8 +112,6 @@ foolishApp.run(function ($rootScope, $timeout, $log) {
 //   }
 //   changeMessage(1)
 
-
-});
 foolishApp.controller('ArtboardCtrl', function ( $log, $timeout) {
     // !! BEGIN AUSTIN COMMENT BLOCK
     // !!
