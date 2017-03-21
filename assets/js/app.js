@@ -46,9 +46,7 @@ foolishApp.config(function ($routeProvider) {
 // All these changes appear to be made through javascript, not CSS.
 //
 
-
-//foolishApp.run(function ($rootScope, $timeout, $log) {});
-foolishApp.controller('ArtboardCtrl', function ($log, $timeout) {
+foolishApp.controller('ArtboardCtrl', function ($rootScope, $log, $timeout) {
     // !! BEGIN AUSTIN COMMENT BLOCK
     // !!
     // !! The goal of Angular 2 in typescript 1.6 in JavaScript is to make Angular more Object Oriented
@@ -92,121 +90,202 @@ foolishApp.controller('ArtboardCtrl', function ($log, $timeout) {
     // !!
     // !! END AUSTIN COMMENT BLOCK
 
-var self = this;    
+    var self = this;    
 
     self.timeout;
     self.pilot;
     self.mercury;
     self.apollo;
     self.mars;
-
-self.init= function(){
-    self.start;
-}
-self.start= function(){
-    $timeout.cancel(self.timeout);
-    timeout = null;
-    self.pilot = true;
-    self.mercury = true;
-    self.apollo = true;
-    self.mars = true;
-    document.getElementsByName("link_Home")[0].style.textDecoration = "underline";
-    document.getElementsByName("link_Home")[0].style.color = "#000";
-    document.getElementsByName("link_About")[0].style.color = "#000";
-    document.getElementsByName("link_Portfolio")[0].style.color = "#000";
-    document.getElementsByName("link_Contact")[0].style.color = "#000";
-
-}
+    self.message1;
+    self.messsage2;
     
-self.startHover = function() {
-    if(self.pilot== true && self.mercury== true && self.apollo== true && self.mars== true){
-    self.start();}
-    $timeout.cancel(self.timeout);
-    self.step();
-} 
+    // self.init -- The constructor
+    // Everything that the controller needs to do for normal operation 
+    // should be contained in this function.
+    self.init = function() {
+        self.start();
+        self.message_init();
+    }  
 
-self.stopHover = function() {
-    $timeout.cancel(self.timeout);
-}
+    //////////////////////////////////
 
-self.reloadRoute = function() {
-    self.start();
-    self.moveAhead();
-    self.step();
-}
-
-self.toggle_text_color = function(label) {
-    console.log(document.getElementsByName(label)[0].style.color)
-    if (document.getElementsByName(label)[0].style.color== "rgb(255, 255, 255)"){
-        document.getElementsByName(label)[0].style.color="#000";
+    self.message_init = function() {
+        $rootScope.pageMessage = ""
+        self.message1 = "This is the first message";
+        self.message2 = "This is the message #2!";
+        self.timeout_message();
     }
-    else if (document.getElementsByName(label)[0].style.color== "rgb(0, 0, 0)"){
-        document.getElementsByName(label)[0].style.color="#FFF";
-    }
-    else {
-        document.getElementsByName(label)[0].style.color="#000";
-    }
-}
 
-self.moveAhead = function(){
+    self.toggle_message = function() {
+        console.log("TOGGLE")
+        if ($rootScope.pageMessage == self.message1) {
+            $rootScope.pageMessage = self.message2;
+        }
+        else if ($rootScope.pageMessage == self.message2) {
+            $rootScope.pageMessage = self.message1;
+        }
+        else {
+            $rootScope.pageMessage = self.message1;
+        } 
+    }
     
-    //set state0 to state1
-    if(self.pilot== true && self.mercury== true && self.apollo== true && self.mars== true){
-        self.pilot= false;
-        self.mercury= true;
-        self.apollo= true;
-        self.mars= true;
-        self.toggle_text_color("link_Home");
+    self.timeout_message = function () {
+        $timeout(function() {
+                    self.toggle_message();
+                    self.timeout_message();
+                }, 1000)
     }
-    //set state1 to state2
-    else if(self.pilot==false){
-        self.pilot= true;
-        self.mercury= false;
-        self.apollo= true;
-        self.mars= true;
-        self.toggle_text_color("link_About");
+    
+    
+    ///////////////////////////////////
+
+    //
+    // self.start - Reset the astronauts to "state 0"
+    // State 0 is:
+    //  1. Stop any animation
+    //  2. Hide all the astronauts
+    //  3. Set the "Home" link to underline
+    //  4. Set all the link texts to black
+    // You will need to restart any animation (by calling self.step()), if appropriate
+    //
+    self.start = function() {
+        $timeout.cancel(self.timeout);
+        timeout = null;
+        self.pilot = true;
+        self.mercury = true;
+        self.apollo = true;
+        self.mars = true;
+        document.getElementsByName("link_Home")[0].style.textDecoration = "underline";
+        document.getElementsByName("link_Home")[0].style.color = "#000";
+        document.getElementsByName("link_About")[0].style.color = "#000";
+        document.getElementsByName("link_Portfolio")[0].style.color = "#000";
+        document.getElementsByName("link_Contact")[0].style.color = "#000";
     }
-    //set state2 to state3
-    else if(self.mercury==false){
-        self.pilot= true;
-        self.mercury= true;
-        self.apollo= false;
-        self.mars= true;
-        self.toggle_text_color("link_Portfolio");
+    
+    //
+    // self.startHover - SVG Callback when you "hover" over the astronauts
+    // This function resets the animation:
+    //  1. Cancel any timeout that is currently pending
+    //  2. Restart the animation (ie, reset the timeout to 1s from now)
+    //
+    self.startHover = function() {
+        //if (self.pilot == true && self.mercury == true && self.apollo == true && self.mars == true) //{
+        //    self.start();
+        //}
+        $timeout.cancel(self.timeout);
+        self.step();
     } 
-    //set state3 to state4
-    else if(self.apollo==false){
-        self.pilot= true;
-        self.mercury= true;
-        self.apollo= true;
-        self.mars= false;
-        self.toggle_text_color("link_Contact");
-    }
-    //set state4 to state0
-    else if(self.mars==false){
-        self.pilot= false;
-        self.mercury= true;
-        self.apollo= true;
-        self.mars= true;
-        self.toggle_text_color("link_Home");
-    }
-    //oops
-    else{
-        $log.log("oops");
-    }
-    }
-    
 
-self.step= function(){
-    
-    self.timeout= $timeout(function(){
-    self.moveAhead();
-    self.step();    
-    
-}, 1000);}
+    // 
+    // self.stopHover - SVG Callback when you "unhover" the astronauts
+    // This function stops the animation, but otherwise leaves everything alone
+    //
+    self.stopHover = function() {
+        $timeout.cancel(self.timeout);
+    }
 
-self.start();
+    //
+    // self.reloadRoute - SVG Callback when you *click* on the astronauts
+    // This function resets the astronauts and restarts the animation.
+    // Because you cannot click on the astronauts unless you are hovering
+    // over them, it is implied that this function should always restart animation.
+    //
+    self.reloadRoute = function() {
+        self.start();           // Go back to state 0 (from wherever we are at)
+        self.moveAhead();       // Advance to state 1 (from state 0)
+        self.step();            // Restart the animation process
+    }
+
+    //
+    // self.toggle_text_color - Given a text label, if it's white, make it black.
+    //                          if it's black, make it white.  
+    //                          If it's neither, make it black.
+    //
+    self.toggle_text_color = function(label) {
+        console.log(document.getElementsByName(label)[0].style.color)
+        // Change white to black...
+        if (document.getElementsByName(label)[0].style.color== "rgb(255, 255, 255)"){
+            document.getElementsByName(label)[0].style.color="#000";
+        }
+        // Or change black to white...
+        else if (document.getElementsByName(label)[0].style.color== "rgb(0, 0, 0)"){
+            document.getElementsByName(label)[0].style.color="#FFF";
+        }
+        // Or change anything else to black.
+        else {
+            document.getElementsByName(label)[0].style.color="#000";
+        }
+    }
+
+    //
+    // self.moveAhead - Advance from the current state (0-4) to the next state (1-4)
+    //              State 0 -> State 1 -> State 2 -> State 3 -> State 4 -> State 1 ...
+    // This function is called by both self.reloadRoute(), and self.step().
+    //
+    self.moveAhead = function() {
+        //set state0 to state1
+        if (self.pilot == true && self.mercury == true && self.apollo == true && self.mars == true) {
+            self.pilot = false;
+            self.mercury = true;
+            self.apollo = true;
+            self.mars = true;
+            self.toggle_text_color("link_Home");
+        }
+        //set state1 to state2
+        else if (self.pilot == false) {
+            self.pilot = true;
+            self.mercury = false;
+            self.apollo = true;
+            self.mars = true;
+            self.toggle_text_color("link_About");
+        }
+        //set state2 to state3
+        else if (self.mercury == false) {
+            self.pilot = true;
+            self.mercury = true;
+            self.apollo = false;
+            self.mars = true;
+            self.toggle_text_color("link_Portfolio");
+        } 
+        //set state3 to state4
+        else if (self.apollo == false) {
+            self.pilot = true;
+            self.mercury = true;
+            self.apollo = true;
+            self.mars = false;
+            self.toggle_text_color("link_Contact");
+        }
+        //set state4 to state0
+        else if (self.mars == false) {
+            self.pilot = false;
+            self.mercury = true;
+            self.apollo = true;
+            self.mars = true;
+            self.toggle_text_color("link_Home");
+        }
+        //oops
+        else{
+            $log.log("oops");
+        }
+    }
+    
+    //
+    // self.step - Wrap a cyclical call (every second) around self.moveAhead().
+    // You should call this when you wish to "begin animation".
+    // When you wish to "stop animation", do a $timeout.cancel(self.timeout);
+    //
+    self.step = function() {
+        self.timeout = $timeout(function() {
+                            self.moveAhead();
+                            self.step();    
+                       }, 1000);
+                };
+
+    // The only thing at the top level of a controller is a call to self.init().
+    self.init();
 });
+
 foolishApp.controller('AboutCtrl', function ($scope, $timeout, $log) {
     var self = this;
     var timeout;
