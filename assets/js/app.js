@@ -49,12 +49,12 @@ foolishApp.config(function($mdThemingProvider) {
 
 foolishApp.run(function ($rootScope, $timeout, $log) {
     var self = this;
-    $rootScope.pageMessage ="Sometimes art happens. For such occassions, we have this space to contain it all"
+    $rootScope.pageMessage ="This is the first message"
     var timer;
     $rootScope.pass=1;
     
     self.toggle_message= function(){
-       self.timeout = $timeout(function(){
+       self.timeout= $timeout(function(){
             
             if ($rootScope.pageMessage=="This is the first message"){
             $rootScope.pageMessage = "This is message #2!";
@@ -62,8 +62,12 @@ foolishApp.run(function ($rootScope, $timeout, $log) {
             else if ($rootScope.pageMessage == "This is message #2!"){
                 $rootScope.pageMessage = "This is the first message";
             }
-            else {$rootScope.pageMessage=="This is the first message";}      
+            else {$rootScope.pageMessage="This is the first message";} 
+           
+           self.toggle_message();
         }, 1000)
+       
+     
     };
     
     self.toggle_message();
@@ -97,7 +101,7 @@ foolishApp.run(function ($rootScope, $timeout, $log) {
 //       }
 //       $timeout(function(){changeMessage(bool)}, 10000)
 //   }
-   changeMessage(1)
+//   changeMessage(1)
 
 
 });
