@@ -48,38 +48,55 @@ foolishApp.config(function($mdThemingProvider) {
 
 
 foolishApp.run(function ($rootScope, $timeout, $log) {
-     var hide = true;
-    $rootScope.pageMessage =" Sometimes art happens. For such occassions, we have this space to contain it all"
+    var self = this;
+    $rootScope.pageMessage ="Sometimes art happens. For such occassions, we have this space to contain it all"
     var timer;
     $rootScope.pass=1;
-    var countUp = function(message, bool) {
-        $log.log(message + ' - ' + bool)
-        if(bool == 1){
-            message = 'even';
-            bool+= 1;
-        }
-        else{
-            message = 'odd';
-            bool-= 1;
-        }
-        $rootScope.pass+=1;
-        if($rootScope.pass < 10){
-            $timeout(function(){countUp(message, bool)}, 1000);
-        }
-    }
-    var passOne = 'First pass'
-    $timeout(countUp(passOne, $rootScope.pass), 1000);
-    var changeMessage = function(bool) {
-       if (bool == 1) {
-           bool += 1
-           $rootScope.pageMessage = " Sometimes art happens. For such occassions, we have this space to contain it all"
-       }
-       else {
-           bool -= 1
-           $rootScope.pageMessage = "This message is changing"
-       }
-       $timeout(function(){changeMessage(bool)}, 10000)
-   }
+    
+    self.toggle_message= function(){
+       self.timeout = $timeout(function(){
+            
+            if ($rootScope.pageMessage=="This is the first message"){
+            $rootScope.pageMessage = "This is message #2!";
+            }
+            else if ($rootScope.pageMessage == "This is message #2!"){
+                $rootScope.pageMessage = "This is the first message";
+            }
+            else {$rootScope.pageMessage=="This is the first message";}      
+        }, 1000)
+    };
+    
+    self.toggle_message();
+    
+    $log.log("this is working")
+//    var countUp = function(message, bool) {
+//        $log.log(message + ' - ' + bool)
+//        if(bool == 1){
+//            message = 'even';
+//            bool+= 1;
+//        }
+//        else{
+//            message = 'odd';
+//            bool-= 1;
+//        }
+//        $rootScope.pass+=1;
+//        if($rootScope.pass < 10){
+//            $timeout(function(){countUp(message, bool)}, 1000);
+//        }
+//    }
+//    var passOne = 'First pass'
+//    $timeout(countUp(passOne, $rootScope.pass), 1000);
+//    var changeMessage = function(bool) {
+//       if (bool == 1) {
+//           bool += 1
+//           $rootScope.pageMessage = " Sometimes art happens. For such occassions, we have this space to contain it all"
+//       }
+//       else {
+//           bool -= 1
+//           $rootScope.pageMessage = "This message is changing"
+//       }
+//       $timeout(function(){changeMessage(bool)}, 10000)
+//   }
    changeMessage(1)
 
 
