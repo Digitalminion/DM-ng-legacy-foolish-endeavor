@@ -289,11 +289,12 @@ foolishApp.controller('ArtboardCtrl', function ($rootScope, $log, $timeout) {
 foolishApp.controller('AboutCtrl', function ($scope, $timeout, $log) {
     var self = this;
     var poppy_timeout;
-    $log.log("first step");
+    self.J1;
+    self.J2;
+    self.J3;
     
     self.poppy_step = function (a) {
         poppy_timeout = $timeout(function () {
-            
             var m_array = [a.Petal_2, a.Petal_1, a.Petal_3, a.Petal_4, a.Petal_5]
             
             switch (true) {
@@ -355,19 +356,58 @@ foolishApp.controller('AboutCtrl', function ($scope, $timeout, $log) {
     }
     self.poppy_restart();
     
+    self.jelly_start = function(){
+        self.jelly_init();
+        self.jelly_timeout;
+    };
+    self.jelly_init = function(){
+        self.J1 = true;
+        self.J2 = true;
+        self.J3 = true;
+        $log.log("Step1");
+        self.jelly_timeout();
+    };
     
+    self.swimAhead = function(){
+        $log.log("Step2");
+        if (self.J1 == true && self.J2 == true && self.J3 ==true){
+            self.J1 = false;
+            self.J2 = true;
+            self.J3 = true;
+            $log.log("Step3");
+        } else if (self.J1 == false){
+            self.J1 = true;
+            self.J2 = false;
+            self.J3 = true;
+            $log.log("Step4");
+        } else if (self.J2 == false){
+            self.J1 = true;
+            self.J2 = true;
+            self.J3 = false;
+            $log.log("Step5");
+        } else if (self.J3 == false){
+            self.J1 = false;
+            self.J2 = true;
+            self.J3 = true;
+            $log.log("Step6");
+        } else{
+            self.J1 = true;
+            self.J2 = true;
+            self.J3 = true;
+            $log.log("Step7");
+        }
+    };
+
+    self.jelly_timeout = function(){
+        $timeout(function() {
+            self.swimAhead(); 
+            self.jelly_timeout();
+         }, 1000);
+    };
+    self.jelly_start();
+
+//    self.jelly_retart = function(){
+//        
+//    };
     
-    //        $scope.reloadRoute = function(){
-    //        $log.log("Here I Am!");
-    //        restart();
-    //    }
-    //
-    //        $scope.startHover = function(){
-    //        $timeout.cancel(timeout);
-    //        step(self);
-    //    }
-    //    $scope.stopHover = function(){
-    //        $timeout.cancel(timeout);
-    //        timeout = null;
-    //    }
 });
