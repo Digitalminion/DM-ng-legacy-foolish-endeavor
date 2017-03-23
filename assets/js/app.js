@@ -288,10 +288,11 @@ foolishApp.controller('ArtboardCtrl', function ($rootScope, $log, $timeout) {
 
 foolishApp.controller('AboutCtrl', function ($scope, $timeout, $log) {
     var self = this;
-    var timeout;
+    var poppy_timeout;
     $log.log("first step");
-    var step = function (a) {
-        timeout = $timeout(function () {
+    
+    self.poppy_step = function (a) {
+        poppy_timeout = $timeout(function () {
             
             var m_array = [a.Petal_2, a.Petal_1, a.Petal_3, a.Petal_4, a.Petal_5]
             
@@ -339,20 +340,23 @@ foolishApp.controller('AboutCtrl', function ($scope, $timeout, $log) {
                 a.Petal_5 = true;
                 break;
             }
-            step(a);
+            self.poppy_step(a);
         }, 1000)
     };
-    var restart = function () {
-        $timeout.cancel(timeout);
-        timeout = null;
+    self.poppy_restart = function () {
+        $timeout.cancel(poppy_timeout);
+        poppy_timeout = null;
         self.Petal_2 = true;
         self.Petal_1 = true;
         self.Petal_3 = true;
         self.Petal_4 = true;
         self.Petal_5 = true;
-        step(self);
+        self.poppy_step(self);
     }
-    restart();
+    self.poppy_restart();
+    
+    
+    
     //        $scope.reloadRoute = function(){
     //        $log.log("Here I Am!");
     //        restart();
