@@ -289,6 +289,7 @@ foolishApp.controller('ArtboardCtrl', function ($rootScope, $log, $timeout) {
 foolishApp.controller('AboutCtrl', function ($scope, $timeout, $log) {
     var self = this;
     var timeout;
+    document.getElementsByName("link_About")[0].style.color="#FFF";
     $log.log("first step");
     var step = function (a) {
         timeout = $timeout(function () {
