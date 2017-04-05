@@ -8,6 +8,10 @@ foolishApp.config(function ($routeProvider) {
         templateUrl: "assets/tpl/about.html",
         controller: "AboutCtrl",
         controllerAs: "about"
+    }).when("/portfolio", {
+        templateUrl: "assets/tpl/portfolio.html",
+        controller: "PortfolioCtrl",
+        controllerAs: "portfolio"
     });
 });
 
@@ -367,3 +371,4 @@ foolishApp.controller('AboutCtrl', function ($scope, $timeout, $log) {
     //        timeout = null;
     //    }
 });
+foolishApp.controller('PortfolioCtrl', function ($scope){});
