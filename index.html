@@ -4,14 +4,18 @@
     <link rel="stylesheet" type="text/css" href="./bower_components/angular-material/angular-material.min.css">
 </head>
 <body ng-app="foolishApp">
+
+    <div layout="column"  layout-fill>
+        <div flex="15" >
     <div class="header">
-            <nav>
-                <font face="SnellRoundhand">
+                <center>
                 <a href="#!/">
-                <img src="assets/img/logo.svg" id="logo">
-               </a>
-                </font>
-            </nav>
+                <img src="assets/img/logo.svg" id="logo" style="height:100%">
+               </a>   
+        </center>
+    </div>
+    </div>
+    
         
 <!--
 
@@ -23,14 +27,22 @@
     <div class="content" id="post">
     Look at this stuff.
     </div>
--->
+-->     
+        <div flex="80" style="height:70%">
+        
         <ng-view></ng-view>
-
+    
+        </div>
     
 
     
-    <div class="footer">
-       {{pageMessage}}
+
+    <div flex="5">
+        <div class="footer">
+
+           {{pageMessage}}
+        </div>
+        </div>
     </div>
     
     <div id="JavaScript">
