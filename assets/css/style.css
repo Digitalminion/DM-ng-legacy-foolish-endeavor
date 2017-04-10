@@ -36,6 +36,10 @@ md-nav-bar md-nav-bar {
     color: #ffffff;
 }
 
+.fade.ng-hide {
+  transition:0.5s linear all;
+  opacity:0;
+}
 
 /*
 md-nav-bar md-nav-ink-bar {
