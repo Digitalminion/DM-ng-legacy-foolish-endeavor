@@ -1,19 +1,32 @@
 <html>
+
 <head>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="./bower_components/angular-material/angular-material.min.css">
-</head>
+    <link rel="stylesheet" type="text/css" href="./bower_components/angular-material/angular-material.min.css"> </head>
+
 <body ng-app="foolishApp">
-    <div class="header">
-            <nav>
-                <font face="SnellRoundhand">
-                <a href="#!/">
-                <img src="assets/img/logo.svg" id="logo">
-               </a>
-                </font>
-            </nav>
+    <div layout="column">
+    <div class="header" style="height:50px">
         
-<!--
+            <div layout="row" layout-fill style="background:#66313f">
+                <md-button flex=20 name="link_Home" href="#!/" name="Home">Home</md-button>
+                <md-button flex=20 name="link_About" href="#!/about" name="About">About</md-button> 
+                <div flex=20 >
+                    <center><img src="assets/img/logowhite.png" id="abbynasa" style="height:40px; width:auto;padding: 5px" /></center>
+                </div>
+                <md-button flex=20 name="link_Portfolio" href="#!/" name="Portfolio">Portfolio</md-button>
+                <md-button flex=20 name="link_Contact" href="#!/" name="Contact">Contact</md-button>
+            </div>
+            
+        </div>
+        <div flex=90 >
+            <ng-view></ng-view>
+        </div>
+        <div flex=5 >
+            <div class="footer"> {{pageMessage}} </div>
+        </div>
+    </div>
+    <!--
 
     </div>	
 	<div class="content container">
@@ -24,27 +37,17 @@
     Look at this stuff.
     </div>
 -->
-        <ng-view></ng-view>
-
     
-
-    
-    <div class="footer">
-       {{pageMessage}}
-    </div>
     
     <div id="JavaScript">
-        <script src="./bower_components/angular/angular.min.js" type="text/javascript"></script>        
+        <script src="./bower_components/angular/angular.min.js" type="text/javascript"></script>
         <script src="./bower_components/angular-route/angular-route.min.js" type="text/javascript"></script>
         <script src="./bower_components/angular-animate/angular-animate.min.js" type="text/javascript"></script>
         <script src="./bower_components/angular-aria/angular-aria.js" type="text/javascript"></script>
         <script src="./bower_components/angular-material/angular-material.min.js" type="text/javascript"></script>
         <script src="./bower_components/angular-messages/angular-messages.min.js" type="text/javascript"></script>
-        
         <script src="./assets/js/app.js" type="text/javascript"></script>
-        
     </div>
-    
-
 </body>
+
 </html>
