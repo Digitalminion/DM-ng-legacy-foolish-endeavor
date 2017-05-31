@@ -1,7 +1,7 @@
 var foolishApp = angular.module('foolishApp', ['ngRoute', 'ngMessages', 'ngAnimate', 'ngMaterial', 'ngAria']);
 foolishApp.config(function ($routeProvider) {
     $routeProvider.when("/", {
-        templateUrl: "assets/tpl/home.html", 
+        templateUrl: "assets/tpl/home.html",
         controller: "ArtboardCtrl",
         controllerAs: "artboard"
     }).when("/about", {
@@ -90,7 +90,7 @@ foolishApp.controller('ArtboardCtrl', function ($rootScope, $log, $timeout) {
     // !!
     // !! END AUSTIN COMMENT BLOCK
 
-    var self = this;    
+    var self = this;
 
     self.timeout;
     self.pilot;
@@ -99,25 +99,25 @@ foolishApp.controller('ArtboardCtrl', function ($rootScope, $log, $timeout) {
     self.mars;
     self.message1;
     self.messsage2;
-    
+
     // self.init -- The constructor
     // Everything that the controller needs to do for normal operation 
     // should be contained in this function.
-    self.init = function() {
+    self.init = function () {
         self.start();
         self.message_init();
-    }  
+    }
 
     //////////////////////////////////
 
-    self.message_init = function() {
+    self.message_init = function () {
         $rootScope.pageMessage = ""
         self.message1 = "This is the first message";
         self.message2 = "This is the message #2!";
         self.timeout_message();
     }
 
-    self.toggle_message = function() {
+    self.toggle_message = function () {
         console.log("TOGGLE")
         if ($rootScope.pageMessage == self.message1) {
             $rootScope.pageMessage = self.message2;
@@ -127,17 +127,17 @@ foolishApp.controller('ArtboardCtrl', function ($rootScope, $log, $timeout) {
         }
         else {
             $rootScope.pageMessage = self.message1;
-        } 
+        }
     }
-    
+
     self.timeout_message = function () {
-        $timeout(function() {
-                    self.toggle_message();
-                    self.timeout_message();
-                }, 1000)
+        $timeout(function () {
+            self.toggle_message();
+            self.timeout_message();
+        }, 1000)
     }
-    
-    
+
+
     ///////////////////////////////////
 
     //
@@ -149,7 +149,7 @@ foolishApp.controller('ArtboardCtrl', function ($rootScope, $log, $timeout) {
     //  4. Set all the link texts to black
     // You will need to restart any animation (by calling self.step()), if appropriate
     //
-    self.start = function() {
+    self.start = function () {
         $timeout.cancel(self.timeout);
         timeout = null;
         self.pilot = true;
@@ -162,26 +162,26 @@ foolishApp.controller('ArtboardCtrl', function ($rootScope, $log, $timeout) {
         document.getElementsByName("link_Portfolio")[0].style.color = "#000";
         document.getElementsByName("link_Contact")[0].style.color = "#000";
     }
-    
+
     //
     // self.startHover - SVG Callback when you "hover" over the astronauts
     // This function resets the animation:
     //  1. Cancel any timeout that is currently pending
     //  2. Restart the animation (ie, reset the timeout to 1s from now)
     //
-    self.startHover = function() {
+    self.startHover = function () {
         //if (self.pilot == true && self.mercury == true && self.apollo == true && self.mars == true) //{
         //    self.start();
         //}
         $timeout.cancel(self.timeout);
         self.step();
-    } 
+    }
 
     // 
     // self.stopHover - SVG Callback when you "unhover" the astronauts
     // This function stops the animation, but otherwise leaves everything alone
     //
-    self.stopHover = function() {
+    self.stopHover = function () {
         $timeout.cancel(self.timeout);
     }
 
@@ -191,7 +191,7 @@ foolishApp.controller('ArtboardCtrl', function ($rootScope, $log, $timeout) {
     // Because you cannot click on the astronauts unless you are hovering
     // over them, it is implied that this function should always restart animation.
     //
-    self.reloadRoute = function() {
+    self.reloadRoute = function () {
         self.start();           // Go back to state 0 (from wherever we are at)
         self.moveAhead();       // Advance to state 1 (from state 0)
         self.step();            // Restart the animation process
@@ -202,19 +202,19 @@ foolishApp.controller('ArtboardCtrl', function ($rootScope, $log, $timeout) {
     //                          if it's black, make it white.  
     //                          If it's neither, make it black.
     //
-    self.toggle_text_color = function(label) {
+    self.toggle_text_color = function (label) {
         console.log(document.getElementsByName(label)[0].style.color)
         // Change white to black...
-        if (document.getElementsByName(label)[0].style.color== "rgb(255, 255, 255)"){
-            document.getElementsByName(label)[0].style.color="#000";
+        if (document.getElementsByName(label)[0].style.color == "rgb(255, 255, 255)") {
+            document.getElementsByName(label)[0].style.color = "#000";
         }
         // Or change black to white...
-        else if (document.getElementsByName(label)[0].style.color== "rgb(0, 0, 0)"){
-            document.getElementsByName(label)[0].style.color="#FFF";
+        else if (document.getElementsByName(label)[0].style.color == "rgb(0, 0, 0)") {
+            document.getElementsByName(label)[0].style.color = "#FFF";
         }
         // Or change anything else to black.
         else {
-            document.getElementsByName(label)[0].style.color="#000";
+            document.getElementsByName(label)[0].style.color = "#000";
         }
     }
 
@@ -223,7 +223,7 @@ foolishApp.controller('ArtboardCtrl', function ($rootScope, $log, $timeout) {
     //              State 0 -> State 1 -> State 2 -> State 3 -> State 4 -> State 1 ...
     // This function is called by both self.reloadRoute(), and self.step().
     //
-    self.moveAhead = function() {
+    self.moveAhead = function () {
         //set state0 to state1
         if (self.pilot == true && self.mercury == true && self.apollo == true && self.mars == true) {
             self.pilot = false;
@@ -247,7 +247,7 @@ foolishApp.controller('ArtboardCtrl', function ($rootScope, $log, $timeout) {
             self.apollo = false;
             self.mars = true;
             self.toggle_text_color("link_Portfolio");
-        } 
+        }
         //set state3 to state4
         else if (self.apollo == false) {
             self.pilot = true;
@@ -265,22 +265,22 @@ foolishApp.controller('ArtboardCtrl', function ($rootScope, $log, $timeout) {
             self.toggle_text_color("link_Home");
         }
         //oops
-        else{
+        else {
             $log.log("oops");
         }
     }
-    
+
     //
     // self.step - Wrap a cyclical call (every second) around self.moveAhead().
     // You should call this when you wish to "begin animation".
     // When you wish to "stop animation", do a $timeout.cancel(self.timeout);
     //
-    self.step = function() {
-        self.timeout = $timeout(function() {
-                            self.moveAhead();
-                            self.step();    
-                       }, 1000);
-                };
+    self.step = function () {
+        self.timeout = $timeout(function () {
+            self.moveAhead();
+            self.step();
+        }, 1000);
+    };
 
     // The only thing at the top level of a controller is a call to self.init().
     self.init();
@@ -292,52 +292,52 @@ foolishApp.controller('AboutCtrl', function ($scope, $timeout, $log) {
     $log.log("first step");
     var step = function (a) {
         timeout = $timeout(function () {
-            
+
             var m_array = [a.Petal_2, a.Petal_1, a.Petal_3, a.Petal_4, a.Petal_5]
-            
+
             switch (true) {
-            case (a.Petal_2 && a.Petal_1 && a.Petal_3 && a.Petal_4 && a.Petal_5):
-                a.Petal_2 = false;
-                a.Petal_1 = true;
-                a.Petal_3 = true;
-                a.Petal_4 = true;
-                a.Petal_5 = true;
-                break;
-            case (!a.Petal_2 && a.Petal_1 && a.Petal_3 && a.Petal_4 && a.Petal_5):
-                a.Petal_2 = false;
-                a.Petal_1 = false;
-                a.Petal_3 = true;
-                a.Petal_4 = true;
-                a.Petal_5 = true;
-                break;
-            case (!a.Petal_2 && !a.Petal_1 && a.Petal_3 && a.Petal_4 && a.Petal_5):
-                a.Petal_2 = false;
-                a.Petal_1 = false;
-                a.Petal_3 = false;
-                a.Petal_4 = true;
-                a.Petal_5 = true;
-                break;
-            case (!a.Petal_2 && !a.Petal_1 && !a.Petal_3 && a.Petal_4 && a.Petal_5):
-                a.Petal_2 = false;
-                a.Petal_1 = false;
-                a.Petal_3 = false;
-                a.Petal_4 = false;
-                a.Petal_5 = true;
-                break;
-            case (!a.Petal_2 && !a.Petal_1 && !a.Petal_3 && !a.Petal_4 && a.Petal_5):
-                a.Petal_2 = false;
-                a.Petal_1 = false;
-                a.Petal_3 = false;
-                a.Petal_4 = false;
-                a.Petal_5 = false;
-                break;
-            default:
-                a.Petal_2 = true;
-                a.Petal_1 = true;
-                a.Petal_3 = true;
-                a.Petal_4 = true;
-                a.Petal_5 = true;
-                break;
+                case (a.Petal_2 && a.Petal_1 && a.Petal_3 && a.Petal_4 && a.Petal_5):
+                    a.Petal_2 = false;
+                    a.Petal_1 = true;
+                    a.Petal_3 = true;
+                    a.Petal_4 = true;
+                    a.Petal_5 = true;
+                    break;
+                case (!a.Petal_2 && a.Petal_1 && a.Petal_3 && a.Petal_4 && a.Petal_5):
+                    a.Petal_2 = false;
+                    a.Petal_1 = false;
+                    a.Petal_3 = true;
+                    a.Petal_4 = true;
+                    a.Petal_5 = true;
+                    break;
+                case (!a.Petal_2 && !a.Petal_1 && a.Petal_3 && a.Petal_4 && a.Petal_5):
+                    a.Petal_2 = false;
+                    a.Petal_1 = false;
+                    a.Petal_3 = false;
+                    a.Petal_4 = true;
+                    a.Petal_5 = true;
+                    break;
+                case (!a.Petal_2 && !a.Petal_1 && !a.Petal_3 && a.Petal_4 && a.Petal_5):
+                    a.Petal_2 = false;
+                    a.Petal_1 = false;
+                    a.Petal_3 = false;
+                    a.Petal_4 = false;
+                    a.Petal_5 = true;
+                    break;
+                case (!a.Petal_2 && !a.Petal_1 && !a.Petal_3 && !a.Petal_4 && a.Petal_5):
+                    a.Petal_2 = false;
+                    a.Petal_1 = false;
+                    a.Petal_3 = false;
+                    a.Petal_4 = false;
+                    a.Petal_5 = false;
+                    break;
+                default:
+                    a.Petal_2 = true;
+                    a.Petal_1 = true;
+                    a.Petal_3 = true;
+                    a.Petal_4 = true;
+                    a.Petal_5 = true;
+                    break;
             }
             step(a);
         }, 1000)
