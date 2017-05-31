@@ -1,18 +1,14 @@
 /**{border-style: solid;}*/
 
 body{
-    background: #EDEEF0;
+
+    background-image: url("/assets/img/poppy.png");
 }
 
 #logo{
     width:50%;
 }
 
-nav{
-    width:50%;
-    margin: 0 auto 50px auto;
-    padding: 15px;
-}
 .content-left{ 
     width:75%;
     float: left;
@@ -30,15 +26,20 @@ nav{
     clear: both;
 }
 
-
-md-nav-bar md-nav-bar {
-    background: #66313f;
-    color: #ffffff;
+md-nav-bar .md-nav-bar {
+    backdrop-filter: blur(20px);
+    --webkit-backdrop-filter: blur(20px);
+    /*background-color: #ffffff !important;
+    opacity: .5;*/
 }
 
-
-/*
-md-nav-bar md-nav-ink-bar {
-    background: green;
+._md-nav-bar-list {
+    z-index: 1!important;
+    opacity: 1!important;
 }
-*/
+
+._md-nav-button {
+    width: 100%;
+    opacity: 1!important;
+    z-index: 6!important;
+}
